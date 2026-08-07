@@ -3,3 +3,7 @@ node_modules/
 Thumbs.db
 *.mp4
 input/
+reports/
+
+# Local Netlify folder
+.netlify
