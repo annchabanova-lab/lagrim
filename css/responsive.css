@@ -1,0 +1,181 @@
+/* La Grimouilliere - Responsive Styles */
+
+@media (max-width: 1024px) {
+  .section {
+    padding: 60px 30px;
+  }
+
+  .section-sage .section-inner {
+    padding: 60px 30px;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero h1 {
+    font-size: 2.8rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+  }
+
+  .spaces-gallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: var(--creme);
+    flex-direction: column;
+    padding: 1.5rem 2rem;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(74, 64, 56, 0.08);
+  }
+
+  .main-nav.open {
+    display: flex;
+  }
+
+  .hamburger {
+    display: block;
+  }
+
+  .section {
+    padding: 50px 20px;
+  }
+
+  .section-sage .section-inner {
+    padding: 50px 20px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  .hero {
+    min-height: 500px;
+  }
+
+  .hero h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+  }
+
+  .page-hero {
+    min-height: 280px;
+    height: 40vh;
+  }
+
+  .page-hero h1 {
+    font-size: 2rem;
+  }
+
+  .intro-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .cards-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .rates-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .nearby-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .room-section {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .room-section.reverse {
+    direction: ltr;
+  }
+
+  .gallery-grid {
+    gap: 0.5rem;
+  }
+
+  .footer-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .cta-band {
+    padding: 60px 20px;
+  }
+
+  .spaces-gallery {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+
+  .availability-table {
+    display: block;
+    overflow-x: auto;
+  }
+
+  .header-actions .btn-header {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero h1 {
+    font-size: 1.8rem;
+  }
+
+  .page-hero h1 {
+    font-size: 1.6rem;
+  }
+
+  .rate-price {
+    font-size: 2rem;
+  }
+
+  .spaces-gallery {
+    grid-template-columns: 1fr;
+  }
+}
