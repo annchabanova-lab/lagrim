@@ -54,7 +54,11 @@
       <p style="margin-top:1rem;">The little house at La Grimouillière is particularly well suited to family stays, thanks to its layout with two upstairs bedrooms, an adjoining room with two single beds, and a ground-floor boudoir with TV.</p>
     </div>
     <div class="contact-grid" style="max-width:900px;margin:0 auto;">
-      <form class="contact-form">
+      <form class="contact-form" action="https://formsubmit.co/contact@lagrimouilliere.fr" method="POST">
+        <input type="hidden" name="_subject" value="New enquiry — La Grimouillière">
+        <input type="hidden" name="_next" value="https://lagrimouilliere.fr/en/thank-you.html">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="text" name="_honey" style="display:none">
         <p style="font-size:0.85rem;color:var(--taupe-light);margin-bottom:1.5rem;">To help us answer you as accurately as possible, please share your travel dates, the number of guests and any useful information about your request.</p>
         <div class="form-group">
           <label for="name">Name</label>
