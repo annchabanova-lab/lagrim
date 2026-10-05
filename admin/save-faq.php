@@ -7,10 +7,11 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$hero_image = trim($_POST['hero_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
 
-$fr_data = ['items' => [], 'cta_image' => $cta_image];
-$en_data = ['items' => [], 'cta_image' => $cta_image];
+$fr_data = ['hero_heading' => trim($_POST['fr_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'items' => [], 'cta_image' => $cta_image];
+$en_data = ['hero_heading' => trim($_POST['en_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'items' => [], 'cta_image' => $cta_image];
 
 if (!empty($_POST['fr_items'])) {
     foreach ($_POST['fr_items'] as $i => $item) {
