@@ -276,7 +276,7 @@ $l = $labels[$lang];
 
     <div class="section-card">
       <h3><?= $l['intro'] ?></h3>
-      <div id="intro-editor"><?= htmlspecialchars($data['intro_text'] ?? '') ?></div>
+      <div id="intro-editor"><?= $data['intro_text'] ?? '' ?></div>
       <input type="hidden" name="intro_text" id="intro-text-input">
     </div>
 
