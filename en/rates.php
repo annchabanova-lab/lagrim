@@ -119,13 +119,14 @@ $statusLabels = ['available' => 'Available', 'booked' => 'Fully booked', 'on_req
     <p>The calendar below gives an overview of availability. To confirm specific dates, please send us a request with your desired dates and the number of guests.</p>
   </section>
 
+  <?php $ctaImg = '../' . ($rates['cta_image'] ?? 'images/lg-P06-maison-nuit'); ?>
   <section class="cta-band">
     <div class="hero-bg">
       <picture>
         <source type="image/webp"
-          srcset="../images/lg-P06-maison-nuit-sm.webp 400w, ../images/lg-P06-maison-nuit-md.webp 800w, ../images/lg-P06-maison-nuit-lg.webp 1600w"
+          srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
           sizes="100vw">
-        <img src="../images/lg-P06-maison-nuit.jpg" alt="La Grimouillière at night" loading="lazy">
+        <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
       </picture>
     </div>
     <h2>Book your stay</h2>

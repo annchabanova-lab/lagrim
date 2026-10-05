@@ -178,6 +178,11 @@ $max_rooms = max(count($fr_rooms), count($en_rooms));
       </div>
     </div>
 
+    <div class="section-card">
+      <h3>Image bandeau bas / CTA band image</h3>
+      <div id="cta-image-upload"></div>
+    </div>
+
     <button type="submit" class="btn-save">ENREGISTRER / SAVE</button>
   </form>
 </div>
@@ -277,6 +282,12 @@ function initRoomImageUpload(el) {
 
 // Initialize all existing room image uploads
 document.querySelectorAll('.room-image-upload').forEach(initRoomImageUpload);
+
+createImageUpload(document.getElementById('cta-image-upload'), {
+  name: 'cta_image',
+  value: '<?= htmlspecialchars($fr['cta_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image bandeau bas / CTA band image'
+});
 </script>
 </body>
 </html>

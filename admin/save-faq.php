@@ -7,8 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$fr_data = ['items' => []];
-$en_data = ['items' => []];
+$cta_image = trim($_POST['cta_image'] ?? '');
+
+$fr_data = ['items' => [], 'cta_image' => $cta_image];
+$en_data = ['items' => [], 'cta_image' => $cta_image];
 
 if (!empty($_POST['fr_items'])) {
     foreach ($_POST['fr_items'] as $i => $item) {

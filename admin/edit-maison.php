@@ -192,6 +192,11 @@ $max_summary = max(count($fr_summary), count($en_summary));
       </div>
     </div>
 
+    <div class="section-card">
+      <h3>Image bandeau bas / CTA band image</h3>
+      <div id="cta-image-upload"></div>
+    </div>
+
     <button type="submit" class="btn-save">ENREGISTRER / SAVE</button>
   </form>
 </div>
@@ -259,6 +264,11 @@ createImageUpload(document.getElementById('intro-image-upload'), {
   name: 'intro_image',
   value: '<?= htmlspecialchars($fr['intro_image'] ?? '', ENT_QUOTES) ?>',
   label: 'Image introduction / Intro image'
+});
+createImageUpload(document.getElementById('cta-image-upload'), {
+  name: 'cta_image',
+  value: '<?= htmlspecialchars($fr['cta_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image bandeau bas / CTA band image'
 });
 </script>
 </body>

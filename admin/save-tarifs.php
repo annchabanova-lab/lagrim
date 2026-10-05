@@ -7,8 +7,10 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
-$fr_data = ['intro_text' => $_POST['fr_intro_text'] ?? '', 'rates' => [], 'info' => []];
-$en_data = ['intro_text' => $_POST['en_intro_text'] ?? '', 'rates' => [], 'info' => []];
+$cta_image = trim($_POST['cta_image'] ?? '');
+
+$fr_data = ['intro_text' => $_POST['fr_intro_text'] ?? '', 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
+$en_data = ['intro_text' => $_POST['en_intro_text'] ?? '', 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
 
 if (!empty($_POST['fr_rates'])) {
     foreach ($_POST['fr_rates'] as $rate) {

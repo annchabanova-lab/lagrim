@@ -9,6 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 $hero_image = trim($_POST['hero_image'] ?? '');
 $intro_image = trim($_POST['intro_image'] ?? '');
+$cta_image = trim($_POST['cta_image'] ?? '');
 
 $fr_data = [
     'hero' => [
@@ -29,6 +30,7 @@ $fr_data = [
     'cta' => [
         'heading' => trim($_POST['fr_cta_heading'] ?? ''),
         'text' => trim($_POST['fr_cta_text'] ?? ''),
+        'image' => $cta_image,
     ],
 ];
 
@@ -51,6 +53,7 @@ $en_data = [
     'cta' => [
         'heading' => trim($_POST['en_cta_heading'] ?? ''),
         'text' => trim($_POST['en_cta_text'] ?? ''),
+        'image' => $cta_image,
     ],
 ];
 

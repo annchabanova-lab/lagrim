@@ -379,6 +379,7 @@ $max_why = max(count($fr_why), count($en_why), 1);
           </div>
         </div>
       </div>
+      <div id="cta-image-upload" style="margin-top:1.5rem;"></div>
     </div>
 
     <button type="submit" class="btn-save">ENREGISTRER / SAVE</button>
@@ -462,6 +463,11 @@ createImageUpload(document.getElementById('intro-image-upload'), {
   name: 'intro_image',
   value: '<?= htmlspecialchars($fr['intro']['image'] ?? '', ENT_QUOTES) ?>',
   label: 'Image introduction / Intro image'
+});
+createImageUpload(document.getElementById('cta-image-upload'), {
+  name: 'cta_image',
+  value: '<?= htmlspecialchars($fr['cta']['image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image bandeau bas / CTA band image'
 });
 </script>
 </body>

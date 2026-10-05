@@ -123,13 +123,14 @@ function img_srcset_half($lgPath, $prefix = '../') {
     </div>
   </section>
 
+  <?php $ctaImg = '../' . ($data['cta_image'] ?? 'images/lg-P09-chambre-poutres-voilages'); ?>
   <section class="cta-band">
     <div class="hero-bg">
       <picture>
         <source type="image/webp"
-          srcset="../images/lg-P09-chambre-poutres-voilages-sm.webp 400w, ../images/lg-P09-chambre-poutres-voilages-md.webp 800w, ../images/lg-P09-chambre-poutres-voilages-lg.webp 1600w"
+          srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
           sizes="100vw">
-        <img src="../images/lg-P09-chambre-poutres-voilages.jpg" alt="Master bedroom" loading="lazy">
+        <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
       </picture>
     </div>
     <a href="bedrooms.html" class="btn btn-primary">VIEW BEDROOMS</a>

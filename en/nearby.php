@@ -104,13 +104,14 @@ $data = json_decode(file_get_contents(__DIR__ . '/../content/en/nearby.json'), t
     </div>
   </section>
 
+  <?php $ctaImg = '../' . ($data['cta_image'] ?? 'images/lg-P05-arche-jardin'); ?>
   <section class="cta-band">
     <div class="hero-bg">
       <picture>
         <source type="image/webp"
-          srcset="../images/lg-P05-arche-jardin-sm.webp 400w, ../images/lg-P05-arche-jardin-md.webp 800w, ../images/lg-P05-arche-jardin-lg.webp 1600w"
+          srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
           sizes="100vw">
-        <img src="../images/lg-P05-arche-jardin.jpg" alt="Garden arch at La Grimouillière" loading="lazy">
+        <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
       </picture>
     </div>
     <h2>Ready to book?</h2>

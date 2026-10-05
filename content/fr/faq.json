@@ -40,5 +40,6 @@
             "question": "Comment vérifier la disponibilité exacte ?",
             "answer": "Envoyez-nous un message avec vos dates de séjour souhaitées."
         }
-    ]
+    ],
+    "cta_image": "images/lg-P06-maison-nuit"
 }

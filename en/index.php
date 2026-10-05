@@ -149,13 +149,14 @@ $introImg = '../' . ($intro['image'] ?? 'images/lg-P03-facade-clematis');
 
 
     <!-- CTA BAND -->
+    <?php $ctaImg = '../' . ($cta['image'] ?? 'images/lg-P13-facade-jour-banc'); ?>
     <section class="cta-band">
         <div class="hero-bg">
             <picture>
                 <source type="image/webp"
-                    srcset="../images/lg-P13-facade-jour-banc-sm.webp 400w, ../images/lg-P13-facade-jour-banc-md.webp 800w, ../images/lg-P13-facade-jour-banc-lg.webp 1600w"
+                    srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
                     sizes="100vw">
-                <img src="../images/lg-P13-facade-jour-banc.jpg" alt="La Grimouillière from the garden" loading="lazy">
+                <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière from the garden" loading="lazy">
             </picture>
         </div>
         <div class="hero-overlay"></div>

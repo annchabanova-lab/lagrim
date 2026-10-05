@@ -296,6 +296,11 @@ $max_info = max(count($fr_info), count($en_info));
       <button type="button" class="btn-add" onclick="addInfo()">+ Ajouter / Add</button>
     </div>
 
+    <div class="section-card">
+      <h3>Image bandeau bas / CTA band image</h3>
+      <div id="cta-image-upload"></div>
+    </div>
+
     <button type="submit" class="btn-save">ENREGISTRER / SAVE</button>
   </form>
 </div>
@@ -357,6 +362,14 @@ function addInfo() {
   `;
   container.appendChild(item);
 }
+</script>
+<script src="image-upload.js"></script>
+<script>
+createImageUpload(document.getElementById('cta-image-upload'), {
+  name: 'cta_image',
+  value: '<?= htmlspecialchars($fr['cta_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image bandeau bas / CTA band image'
+});
 </script>
 </body>
 </html>

@@ -7,12 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$cta_image = trim($_POST['cta_image'] ?? '');
+
 $fr_data = [
     'intro_text' => $_POST['fr_intro_text'] ?? '',
     'see_do' => [],
     'ideas' => [],
     'access_address' => trim($_POST['fr_access_address'] ?? ''),
     'access_directions' => trim($_POST['fr_access_directions'] ?? ''),
+    'cta_image' => $cta_image,
 ];
 $en_data = [
     'intro_text' => $_POST['en_intro_text'] ?? '',
@@ -20,6 +23,7 @@ $en_data = [
     'ideas' => [],
     'access_address' => trim($_POST['en_access_address'] ?? ''),
     'access_directions' => trim($_POST['en_access_directions'] ?? ''),
+    'cta_image' => $cta_image,
 ];
 
 if (!empty($_POST['fr_see_do'])) {

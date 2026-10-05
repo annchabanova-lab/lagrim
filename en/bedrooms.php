@@ -113,13 +113,14 @@ function img_srcset_room($lgPath, $sizes = '(max-width: 768px) 100vw, 50vw') {
     </div>
   </section>
 
+  <?php $ctaImg = '../' . ($data['cta_image'] ?? 'images/lg-P13-facade-jour-banc'); ?>
   <section class="cta-band">
     <div class="hero-bg">
       <picture>
         <source type="image/webp"
-          srcset="../images/lg-P13-facade-jour-banc-sm.webp 400w, ../images/lg-P13-facade-jour-banc-md.webp 800w, ../images/lg-P13-facade-jour-banc-lg.webp 1600w"
+          srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
           sizes="100vw">
-        <img src="../images/lg-P13-facade-jour-banc.jpg" alt="La Grimouillière" loading="lazy">
+        <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
       </picture>
     </div>
     <h2>View rates</h2>

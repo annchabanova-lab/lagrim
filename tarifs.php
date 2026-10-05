@@ -117,12 +117,13 @@ $statusLabels = ['available' => 'Disponible', 'booked' => 'Complet', 'on_request
     <p>Le calendrier ci-dessous donne un aperçu des disponibilités. Pour confirmer des dates précises, envoyez-nous une demande avec vos dates souhaitées et le nombre de voyageurs.</p>
   </section>
 
+  <?php $ctaImg = $tarifs['cta_image'] ?? 'images/lg-P06-maison-nuit'; ?>
   <section class="cta-band">
     <div class="hero-bg"><picture>
   <source type="image/webp"
-    srcset="images/lg-P06-maison-nuit-sm.webp 400w, images/lg-P06-maison-nuit-md.webp 800w, images/lg-P06-maison-nuit-lg.webp 1600w"
+    srcset="<?= htmlspecialchars($ctaImg) ?>-sm.webp 400w, <?= htmlspecialchars($ctaImg) ?>-md.webp 800w, <?= htmlspecialchars($ctaImg) ?>-lg.webp 1600w"
     sizes="100vw">
-  <img src="images/lg-P06-maison-nuit.jpg" alt="La Grimouillière de nuit" loading="lazy">
+  <img src="<?= htmlspecialchars($ctaImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
 </picture></div>
     <h2>Réservez votre séjour</h2>
     <a href="contact.html" class="btn btn-primary">NOUS CONTACTER</a>
