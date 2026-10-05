@@ -45,5 +45,5 @@ foreach ($defaults as $file => $info) {
 
     file_put_contents($fullPath, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
 }
-echo "\nDone!</pre>';
+echo "\nDone!\n</pre>";
 echo '<p><a href="dashboard.php">Back to dashboard</a></p>';
