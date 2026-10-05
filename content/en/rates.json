@@ -1,0 +1,22 @@
+{
+    "intro_text": "<p>The little house at La Grimouillière welcomes up to 6 guests in a layout particularly designed for families: two real bedrooms upstairs — one with an adjoining room with two single beds — and a ground-floor boudoir with TV that can serve as additional sleeping space.</p>",
+    "rates": [
+        {
+            "name": "Per night",
+            "price": "€250",
+            "detail": "Minimum 2 nights"
+        },
+        {
+            "name": "Per week",
+            "price": "€1,500",
+            "detail": "Saturday to Saturday"
+        }
+    ],
+    "info": [
+        "Minimum stay of 2 nights",
+        "Check-in from 4 pm",
+        "Check-out before 11 am",
+        "Full refund up to 7 days before arrival",
+        "Pets not allowed"
+    ]
+}

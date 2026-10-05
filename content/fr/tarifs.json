@@ -1,0 +1,22 @@
+{
+    "intro_text": "<p>La petite maison de La Grimouillière accueille jusqu'à 6 voyageurs dans un agencement particulièrement pensé pour les familles : deux vraies chambres à l'étage — dont l'une avec une pièce attenante équipée de deux lits simples — et un boudoir avec TV au rez-de-chaussée pouvant servir de couchage supplémentaire.</p>",
+    "rates": [
+        {
+            "name": "La nuit",
+            "price": "250 €",
+            "detail": "Minimum 2 nuits"
+        },
+        {
+            "name": "La semaine",
+            "price": "1 500 €",
+            "detail": "Du samedi au samedi"
+        }
+    ],
+    "info": [
+        "Séjour minimum de 2 nuits",
+        "Check-in à partir de 16h",
+        "Check-out avant 11h",
+        "Remboursement intégral jusqu'à 7 jours avant l'arrivée",
+        "Animaux non admis"
+    ]
+}
