@@ -261,11 +261,7 @@ $max_why = max(count($fr_why), count($en_why), 1);
           </div>
         </div>
       </div>
-      <div class="field-group" style="margin-top:1rem">
-        <label>Image hero (chemin / path)</label>
-        <input type="text" name="hero_image" value="<?= htmlspecialchars($fr['hero']['image'] ?? '') ?>">
-        <p class="help-text">Ex: images/lg-P06-maison-nuit (sans extension — les déclinaisons sm/md/lg sont générées automatiquement)</p>
-      </div>
+      <div id="hero-image-upload" style="margin-top:1rem"></div>
     </div>
 
     <!-- INTRO -->
@@ -291,10 +287,7 @@ $max_why = max(count($fr_why), count($en_why), 1);
           </div>
         </div>
       </div>
-      <div class="field-group" style="margin-top:1rem">
-        <label>Image intro (chemin / path)</label>
-        <input type="text" name="intro_image" value="<?= htmlspecialchars($fr['intro']['image'] ?? '') ?>">
-      </div>
+      <div id="intro-image-upload" style="margin-top:1rem"></div>
     </div>
 
     <!-- AT A GLANCE -->
@@ -452,6 +445,19 @@ function addWhy() {
   `;
   container.appendChild(row);
 }
+</script>
+<script src="image-upload.js"></script>
+<script>
+createImageUpload(document.getElementById('hero-image-upload'), {
+  name: 'hero_image',
+  value: '<?= htmlspecialchars($fr['hero']['image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image hero / Hero image'
+});
+createImageUpload(document.getElementById('intro-image-upload'), {
+  name: 'intro_image',
+  value: '<?= htmlspecialchars($fr['intro']['image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image introduction / Intro image'
+});
 </script>
 </body>
 </html>

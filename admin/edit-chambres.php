@@ -138,10 +138,10 @@ $max_rooms = max(count($fr_rooms), count($en_rooms));
               </div>
             </div>
           </div>
-          <div class="field-group" style="margin-top:0.75rem;">
-            <label>Image (chemin / path)</label>
-            <input type="text" name="fr_rooms[<?= $i ?>][image]" value="<?= htmlspecialchars($fr_rooms[$i]['image'] ?? '') ?>">
-            <input type="hidden" name="en_rooms[<?= $i ?>][image]" value="<?= htmlspecialchars($en_rooms[$i]['image'] ?? $fr_rooms[$i]['image'] ?? '') ?>">
+          <div class="room-image-upload" id="room-image-<?= $i ?>" style="margin-top:0.75rem;"
+               data-name-fr="fr_rooms[<?= $i ?>][image]"
+               data-name-en="en_rooms[<?= $i ?>][image]"
+               data-value="<?= htmlspecialchars($fr_rooms[$i]['image'] ?? '', ENT_QUOTES) ?>">
           </div>
         </div>
         <?php endfor; ?>
@@ -223,15 +223,60 @@ function addRoom() {
         <div class="field-group"><label>Detail</label><input type="text" name="en_rooms[${roomIndex}][detail]"></div>
       </div>
     </div>
-    <div class="field-group" style="margin-top:0.75rem;">
-      <label>Image (chemin / path)</label>
-      <input type="text" name="fr_rooms[${roomIndex}][image]">
-      <input type="hidden" name="en_rooms[${roomIndex}][image]">
+    <div class="room-image-upload" id="room-image-${roomIndex}" style="margin-top:0.75rem;"
+         data-name-fr="fr_rooms[${roomIndex}][image]"
+         data-name-en="en_rooms[${roomIndex}][image]"
+         data-value="">
     </div>
   `;
   container.appendChild(item);
+  initRoomImageUpload(document.getElementById('room-image-' + roomIndex));
   roomIndex++;
 }
+</script>
+<script src="image-upload.js"></script>
+<script>
+function initRoomImageUpload(el) {
+  const nameFr = el.dataset.nameFr;
+  const nameEn = el.dataset.nameEn;
+  const value = el.dataset.value || '';
+  createImageUpload(el, {
+    name: nameFr,
+    value: value,
+    label: 'Image chambre / Room image'
+  });
+  // Add a hidden input that syncs the EN image to the same value
+  const form = document.getElementById('chambres-form') || el.closest('form');
+  if (form) {
+    const observer = new MutationObserver(function() {
+      const frInput = el.querySelector('input[name="' + nameFr + '"]');
+      let enInput = el.querySelector('input[name="' + nameEn + '"]');
+      if (frInput && !enInput) {
+        enInput = document.createElement('input');
+        enInput.type = 'hidden';
+        enInput.name = nameEn;
+        el.appendChild(enInput);
+      }
+      if (frInput && enInput) enInput.value = frInput.value;
+    });
+    observer.observe(el, { childList: true, subtree: true, attributes: true });
+    // Also sync on form submit
+    form.addEventListener('submit', function() {
+      const frInput = el.querySelector('input[name="' + nameFr + '"]');
+      let enInput = el.querySelector('input[name="' + nameEn + '"]');
+      if (frInput && !enInput) {
+        enInput = document.createElement('input');
+        enInput.type = 'hidden';
+        enInput.name = nameEn;
+        el.appendChild(enInput);
+      }
+      if (frInput && enInput) enInput.value = frInput.value;
+    });
+  }
+}
+
+// Initialize all existing room image uploads
+document.querySelectorAll('.room-image-upload').forEach(initRoomImageUpload);
 </script>
 </body>
 </html>

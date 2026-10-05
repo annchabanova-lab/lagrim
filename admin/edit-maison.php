@@ -101,10 +101,7 @@ $max_summary = max(count($fr_summary), count($en_summary));
           </div>
         </div>
       </div>
-      <div class="field-group" style="margin-top:1rem;">
-        <label>Image hero (chemin / path)</label>
-        <input type="text" name="hero_image" value="<?= htmlspecialchars($fr['hero_image'] ?? '') ?>">
-      </div>
+      <div id="hero-image-upload" style="margin-top:1rem"></div>
     </div>
 
     <!-- INTRO -->
@@ -130,10 +127,7 @@ $max_summary = max(count($fr_summary), count($en_summary));
           <input type="hidden" name="en_intro_text" id="en-intro-input">
         </div>
       </div>
-      <div class="field-group" style="margin-top:1rem;">
-        <label>Image intro (chemin / path)</label>
-        <input type="text" name="intro_image" value="<?= htmlspecialchars($fr['intro_image'] ?? '') ?>">
-      </div>
+      <div id="intro-image-upload" style="margin-top:1rem"></div>
     </div>
 
     <!-- SUMMARY CARDS -->
@@ -253,6 +247,19 @@ function addSummaryCard() {
   container.appendChild(card);
   summaryIndex++;
 }
+</script>
+<script src="image-upload.js"></script>
+<script>
+createImageUpload(document.getElementById('hero-image-upload'), {
+  name: 'hero_image',
+  value: '<?= htmlspecialchars($fr['hero_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image hero / Hero image'
+});
+createImageUpload(document.getElementById('intro-image-upload'), {
+  name: 'intro_image',
+  value: '<?= htmlspecialchars($fr['intro_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image introduction / Intro image'
+});
 </script>
 </body>
 </html>
