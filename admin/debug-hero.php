@@ -6,10 +6,16 @@ $jsonPath = __DIR__ . '/../content/fr/homepage.json';
 $data = json_decode(file_get_contents($jsonPath), true) ?: [];
 $heroImg = $data['hero']['image'] ?? 'NOT SET';
 
-// Fix action
+// Fix action — both FR and EN
 if (isset($_GET['fix'])) {
     $data['hero']['image'] = 'images/lg-photo-20261005-204410';
     file_put_contents($jsonPath, json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
+    $enPath = __DIR__ . '/../content/en/homepage.json';
+    $enData = json_decode(file_get_contents($enPath), true) ?: [];
+    $enData['hero']['image'] = 'images/lg-photo-20261005-204410';
+    file_put_contents($enPath, json_encode($enData, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+
     header('Location: debug-hero.php?fixed=1');
     exit;
 }
