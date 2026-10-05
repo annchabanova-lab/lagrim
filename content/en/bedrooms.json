@@ -1,0 +1,42 @@
+{
+    "intro_text": "<p>The sleeping areas of the little house each have their own character. The two real bedrooms are located upstairs, under the beams. One of them communicates with an adjoining room featuring two single beds, particularly well suited to a family. On the ground floor, a boudoir with TV can also serve as an additional sleeping room.</p>",
+    "rooms": [
+        {
+            "label": "BEDROOM 1 — UPSTAIRS",
+            "heading": "Under the beams, a soft cocoon",
+            "description": "Under the beams, this bedroom offers a soft, enveloping atmosphere, with voile curtains on both sides of the bed that highlight its charm and soften the light. An intimate and peaceful room, ideal to retreat to after a day spent in the countryside.",
+            "detail": "Double bedroom upstairs · exposed beams · voile curtains on both sides",
+            "image": "/images/lg-P09-chambre-poutres-voilages-lg.webp"
+        },
+        {
+            "label": "BEDROOM 2 — UPSTAIRS",
+            "heading": "Under the beams, adjoining the children's room",
+            "description": "Also located upstairs, this bedroom with exposed beams extends the warm, authentic atmosphere of the house. It communicates with an adjoining room featuring two single beds, making it a particularly practical setup for a couple travelling with children.",
+            "detail": "Double bedroom upstairs · exposed beams · adjoining a room with two single beds",
+            "image": "/images/lg-extra-chambre-large-lg.webp"
+        },
+        {
+            "label": "ADJOINING ROOM — UPSTAIRS",
+            "heading": "Two single beds, ideal for children",
+            "description": "Adjoining one of the upstairs bedrooms, this room with two single beds has been designed in a soft, practical spirit, particularly well suited to a couple travelling with children. It preserves family proximity while giving everyone their own space. Depending on your needs, it can also be used by a couple.",
+            "detail": "Two single beds · adjoining a double bedroom · ideal for a family",
+            "image": "/images/lg-P15-chambre-commode-lg.webp"
+        },
+        {
+            "label": "BOUDOIR — GROUND FLOOR",
+            "heading": "A flexible space with TV",
+            "description": "Located on the ground floor, the boudoir is not a main bedroom, but a distinctive space with a TV that can serve as an additional sleeping room when needed. A more intimate, more flexible room that adds versatility to the house.",
+            "detail": "Boudoir with TV · on the ground floor · additional sleeping room, flexible use",
+            "image": "/images/lg-P07-chambre-boudoir-lg.webp"
+        },
+        {
+            "label": "BATHROOM & WCs",
+            "heading": "One bathroom, two independent WCs",
+            "description": "The little house has one bathroom, located upstairs. It is complemented by two fully independent WCs: one on the ground floor and one upstairs.",
+            "detail": "",
+            "image": "/images/lg-P14-salle-bain-miroirs-lg.webp"
+        }
+    ],
+    "ideal_heading": "A layout designed for families",
+    "ideal_text": "The little house is particularly well suited to a couple with children, thanks to the adjoining room with two single beds. It can also welcome a couple, an extended family or a small group of loved ones wishing to stay together in a calm and refined setting, up to a maximum of 6 guests."
+}

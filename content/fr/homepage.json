@@ -1,0 +1,64 @@
+{
+    "hero": {
+        "label": "BIENVENUE",
+        "heading": "La Grimouillière",
+        "subheading": "LA PETITE MAISON — LOCATION SAISONNIÈRE",
+        "tagline": "Pays d'Auge · Normandie\nJusqu'à 6 voyageurs · à partir de 250 € / nuit\n2h15 de Paris-Porte Maillot",
+        "image": "images/lg-P06-maison-nuit",
+        "cta_text": "RÉSERVER"
+    },
+    "intro": {
+        "text": "<p>Au sein du domaine de La Grimouillière, la petite maison est une ancienne habitation du XVIIe siècle, entièrement rénovée et aujourd'hui proposée en location saisonnière. Indépendante, avec son propre jardin et sans vis-à-vis, elle accueille jusqu'à 6 voyageurs dans un cadre calme, élégant et chaleureux. Au rez-de-chaussée, la salle à manger et sa cheminée sont le cœur de la maison, prolongé par un salon avec une grande table — idéal pour la lecture, les moments partagés ou le télétravail. Un boudoir avec TV peut également servir de couchage supplémentaire. À l'étage, deux vraies chambres sous les poutres, dont l'une communique avec une pièce attenante équipée de deux lits simples, particulièrement adaptée aux familles.</p>",
+        "image": "images/lg-P03-facade-clematis",
+        "cta_text": "DÉCOUVRIR LA MAISON"
+    },
+    "glance": [
+        {
+            "title": "Espaces de vie",
+            "items": [
+                "Salle à manger avec cheminée",
+                "Salon avec grande table, idéal pour la lecture ou le télétravail",
+                "Boudoir avec TV au rez-de-chaussée, utilisable en couchage supplémentaire"
+            ]
+        },
+        {
+            "title": "Couchages",
+            "items": [
+                "Deux vraies chambres à l'étage",
+                "Une pièce attenante avec deux lits simples",
+                "Jusqu'à 6 voyageurs"
+            ]
+        },
+        {
+            "title": "Confort",
+            "items": [
+                "Wi-Fi haut débit Starlink",
+                "Linge de maison fourni",
+                "Cuisine entièrement équipée",
+                "Buanderie",
+                "Parking sur la propriété"
+            ]
+        },
+        {
+            "title": "Extérieurs",
+            "items": [
+                "Jardin privatif sans vis-à-vis",
+                "Accès piscine de 13h à 18h, de mai à fin septembre",
+                "2h15 de Paris-Porte Maillot"
+            ]
+        }
+    ],
+    "why": [
+        "Une maison indépendante avec son propre jardin et sans vis-à-vis",
+        "Une salle à manger chaleureuse avec cheminée",
+        "Un salon spacieux, idéal pour la lecture et le télétravail",
+        "Deux belles chambres à l'étage, sous les poutres",
+        "Un boudoir avec TV au rez-de-chaussée pour plus de flexibilité",
+        "Un agencement particulièrement pensé pour les familles",
+        "Un point de départ idéal pour découvrir le Pays d'Auge"
+    ],
+    "cta": {
+        "heading": "Réservez la petite maison",
+        "text": "Contactez-nous pour vérifier la disponibilité et réserver votre séjour."
+    }
+}

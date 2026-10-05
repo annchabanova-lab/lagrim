@@ -1,0 +1,44 @@
+{
+    "items": [
+        {
+            "question": "Que loue-t-on à La Grimouillière ?",
+            "answer": "La location concerne la petite maison — une habitation indépendante avec son propre jardin et sans vis-à-vis — située au sein du domaine de La Grimouillière."
+        },
+        {
+            "question": "Combien de voyageurs la maison peut-elle accueillir ?",
+            "answer": "Jusqu'à 6 voyageurs."
+        },
+        {
+            "question": "Quels sont les principaux espaces de vie ?",
+            "answer": "Au rez-de-chaussée, la salle à manger avec cheminée est l'espace de vie commun de la maison. Elle se prolonge par un salon avec une grande table, idéal pour la lecture, les moments partagés et le télétravail."
+        },
+        {
+            "question": "La maison est-elle adaptée aux familles ?",
+            "answer": "Oui — l'agencement est particulièrement pratique pour un couple avec enfants, grâce à la pièce attenante avec deux lits simples à l'étage."
+        },
+        {
+            "question": "Le boudoir est-il une chambre ?",
+            "answer": "Le boudoir est situé au rez-de-chaussée. Ce n'est pas une chambre principale, mais un espace flexible avec TV qui peut être utilisé en couchage supplémentaire."
+        },
+        {
+            "question": "Combien y a-t-il de salles de bain et de WC ?",
+            "answer": "Une salle de bain à l'étage, plus deux WC entièrement indépendants : un au rez-de-chaussée et un à l'étage."
+        },
+        {
+            "question": "Peut-on télétravailler depuis la petite maison ?",
+            "answer": "Oui. La maison bénéficie du Wi-Fi haut débit Starlink sur toute la propriété, et le salon offre une grande table particulièrement adaptée au télétravail."
+        },
+        {
+            "question": "La piscine est-elle accessible ?",
+            "answer": "Oui, la piscine est accessible de 13h à 18h, de mai à fin septembre."
+        },
+        {
+            "question": "Les animaux sont-ils acceptés ?",
+            "answer": "Non, les animaux ne sont pas admis."
+        },
+        {
+            "question": "Comment vérifier la disponibilité exacte ?",
+            "answer": "Envoyez-nous un message avec vos dates de séjour souhaitées."
+        }
+    ]
+}

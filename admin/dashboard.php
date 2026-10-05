@@ -118,39 +118,70 @@ require_login();
 <div class="dashboard">
   <h2>Gestion du contenu</h2>
 
-  <p class="section-label">Tarifs & Disponibilités</p>
+  <p class="section-label">Pages principales</p>
+  <div class="page-grid">
+    <a href="edit-homepage.php" class="page-card">
+      <div class="icon">🏠</div>
+      <h3>Accueil / Homepage</h3>
+      <p>Hero, introduction, en un coup d'oeil, pourquoi la petite maison</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+    <a href="edit-maison.php" class="page-card">
+      <div class="icon">🏡</div>
+      <h3>La maison / The house</h3>
+      <p>Description, espaces de vie, confort</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+    <a href="edit-chambres.php" class="page-card">
+      <div class="icon">🛏️</div>
+      <h3>Chambres / Bedrooms</h3>
+      <p>Descriptions et photos des chambres</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+    <a href="edit-autour.php" class="page-card">
+      <div class="icon">🌳</div>
+      <h3>Autour / Nearby</h3>
+      <p>Activites, lieux, acces</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+  </div>
+
+  <p class="section-label">Tarifs & Disponibilites</p>
   <div class="page-grid">
     <a href="edit-tarifs.php" class="page-card">
       <div class="icon">💰</div>
       <h3>Tarifs / Rates</h3>
-      <p>Prix, informations pratiques — FR et EN côte à côte</p>
+      <p>Prix, informations pratiques</p>
       <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
     </a>
     <a href="edit-availability.php" class="page-card">
       <div class="icon">📅</div>
-      <h3>Disponibilités</h3>
-      <p>Calendrier, périodes disponibles et complètes</p>
+      <h3>Disponibilites</h3>
+      <p>Calendrier, periodes disponibles et completes</p>
       <span class="badge badge-data">FR + EN</span>
     </a>
   </div>
 
-  <p class="section-label">Pages à venir</p>
+  <p class="section-label">Autres pages</p>
   <div class="page-grid">
-    <div class="page-card" style="opacity:0.5;cursor:default;">
-      <div class="icon">🏠</div>
-      <h3>Accueil / Homepage</h3>
-      <p>Textes et images de la page d'accueil</p>
-    </div>
-    <div class="page-card" style="opacity:0.5;cursor:default;">
-      <div class="icon">🛏️</div>
-      <h3>Chambres / Bedrooms</h3>
-      <p>Descriptions et photos des chambres</p>
-    </div>
-    <div class="page-card" style="opacity:0.5;cursor:default;">
-      <div class="icon">🌳</div>
-      <h3>Autour / Nearby</h3>
-      <p>Activités et lieux à découvrir</p>
-    </div>
+    <a href="edit-contact.php" class="page-card">
+      <div class="icon">✉️</div>
+      <h3>Contact</h3>
+      <p>Textes d'introduction, informations pratiques</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+    <a href="edit-faq.php" class="page-card">
+      <div class="icon">❓</div>
+      <h3>FAQ</h3>
+      <p>Questions et reponses</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
+    <a href="edit-legal.php" class="page-card">
+      <div class="icon">📜</div>
+      <h3>Mentions legales / Legal</h3>
+      <p>Informations juridiques</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
   </div>
 </div>
 </body>

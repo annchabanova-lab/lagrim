@@ -1,0 +1,64 @@
+{
+    "hero": {
+        "label": "WELCOME",
+        "heading": "La Grimouillière",
+        "subheading": "THE LITTLE HOUSE — SEASONAL RENTAL",
+        "tagline": "Pays d'Auge · Normandy\nUp to 6 guests · from €250 / night\n2h15 from Paris-Porte Maillot",
+        "image": "images/lg-P06-maison-nuit",
+        "cta_text": "BOOK NOW"
+    },
+    "intro": {
+        "text": "<p>Set within the grounds of La Grimouillière, the little house is a 17th-century former residential home, fully renovated and now available as a seasonal rental. Independent, with its own garden and no facing view, it welcomes up to 6 guests in a calm, elegant and welcoming setting. On the ground floor, the dining room and its fireplace are the heart of the house, extended by a living room with a large table — ideal for reading, spending time together or remote working. A boudoir with TV can also serve as an additional sleeping room. Upstairs, two true bedrooms under the beams, one of them with an adjoining room featuring two single beds, particularly well suited to a couple travelling with children.</p>",
+        "image": "images/lg-P03-facade-clematis",
+        "cta_text": "DISCOVER THE HOUSE"
+    },
+    "glance": [
+        {
+            "title": "Living spaces",
+            "items": [
+                "Dining room with fireplace",
+                "Living room with a large table, ideal for reading or remote working",
+                "Boudoir with TV on the ground floor, usable as an additional sleeping room"
+            ]
+        },
+        {
+            "title": "Sleeping areas",
+            "items": [
+                "Two true bedrooms upstairs",
+                "An adjoining room with two single beds",
+                "Up to 6 guests"
+            ]
+        },
+        {
+            "title": "Comfort",
+            "items": [
+                "High-speed Starlink Wi-Fi",
+                "Household linen provided",
+                "Fully equipped kitchen",
+                "Laundry room",
+                "Parking on the property"
+            ]
+        },
+        {
+            "title": "Outdoors",
+            "items": [
+                "Private garden with no facing view",
+                "Pool access from 1pm to 6pm, May to end of September",
+                "2h15 from Paris-Porte Maillot"
+            ]
+        }
+    ],
+    "why": [
+        "An independent house with its own garden and no facing view",
+        "A warm dining room with a fireplace",
+        "A spacious living room, perfect for reading and remote working",
+        "Two beautiful bedrooms upstairs, under the beams",
+        "A ground-floor boudoir with TV for added flexibility",
+        "A layout particularly designed for families",
+        "An ideal base to discover the Pays d'Auge"
+    ],
+    "cta": {
+        "heading": "Book the little house",
+        "text": "Contact us to check availability and book your stay."
+    }
+}

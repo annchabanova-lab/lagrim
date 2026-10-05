@@ -1,0 +1,42 @@
+{
+    "intro_text": "<p>Les espaces de nuit de la petite maison ont chacun leur caractère. Les deux vraies chambres sont situées à l'étage, sous les poutres. L'une d'elles communique avec une pièce attenante équipée de deux lits simples, particulièrement adaptée aux familles. Au rez-de-chaussée, un boudoir avec TV peut également servir de couchage supplémentaire.</p>",
+    "rooms": [
+        {
+            "label": "CHAMBRE 1 — ÉTAGE",
+            "heading": "Sous les poutres, un cocon de douceur",
+            "description": "Sous les poutres, cette chambre offre une atmosphère douce et enveloppante, avec des voilages de part et d'autre du lit qui soulignent son charme et adoucissent la lumière. Une chambre intime et apaisante, idéale pour se retrouver après une journée dans la campagne.",
+            "detail": "Chambre double à l'étage · poutres apparentes · voilages de part et d'autre",
+            "image": "/images/lg-P09-chambre-poutres-voilages-lg.webp"
+        },
+        {
+            "label": "CHAMBRE 2 — ÉTAGE",
+            "heading": "Sous les poutres, attenante à la chambre enfants",
+            "description": "Également située à l'étage, cette chambre sous les poutres prolonge l'atmosphère chaleureuse et authentique de la maison. Elle communique avec une pièce attenante équipée de deux lits simples, ce qui en fait un agencement particulièrement pratique pour un couple voyageant avec des enfants.",
+            "detail": "Chambre double à l'étage · poutres apparentes · attenante à une pièce avec deux lits simples",
+            "image": "/images/lg-extra-chambre-large-lg.webp"
+        },
+        {
+            "label": "PIÈCE ATTENANTE — ÉTAGE",
+            "heading": "Deux lits simples, idéale pour les enfants",
+            "description": "Attenante à l'une des chambres de l'étage, cette pièce avec deux lits simples a été pensée dans un esprit doux et pratique, particulièrement adapté aux familles. Elle préserve la proximité tout en offrant à chacun son espace. Selon vos besoins, elle peut aussi accueillir un couple.",
+            "detail": "Deux lits simples · attenante à une chambre double · idéale pour les familles",
+            "image": "/images/lg-P15-chambre-commode-lg.webp"
+        },
+        {
+            "label": "BOUDOIR — REZ-DE-CHAUSSÉE",
+            "heading": "Un espace flexible avec TV",
+            "description": "Situé au rez-de-chaussée, le boudoir n'est pas une chambre principale, mais un espace singulier avec TV qui peut servir de couchage supplémentaire quand nécessaire. Une pièce plus intime, plus souple, qui ajoute de la polyvalence à la maison.",
+            "detail": "Boudoir avec TV · au rez-de-chaussée · couchage supplémentaire, usage flexible",
+            "image": "/images/lg-P07-chambre-boudoir-lg.webp"
+        },
+        {
+            "label": "SALLE DE BAIN & WC",
+            "heading": "Une salle de bain, deux WC indépendants",
+            "description": "La petite maison dispose d'une salle de bain, située à l'étage. Elle est complétée par deux WC entièrement indépendants : un au rez-de-chaussée et un à l'étage.",
+            "detail": "",
+            "image": "/images/lg-P14-salle-bain-miroirs-lg.webp"
+        }
+    ],
+    "ideal_heading": "Un agencement pensé pour les familles",
+    "ideal_text": "La petite maison convient particulièrement bien à un couple avec enfants, grâce à la pièce attenante avec deux lits simples. Elle peut aussi accueillir un couple, une famille élargie ou un petit groupe de proches souhaitant séjourner ensemble dans un cadre calme et raffiné, pour un maximum de 6 voyageurs."
+}

@@ -1,0 +1,30 @@
+{
+    "hero_label": "MENTIONS LÉGALES",
+    "hero_heading": "Mentions légales",
+    "sections": [
+        {
+            "heading": "Éditeur du site",
+            "text": "<p>SCI Five Stars</p><p>La Grimouillière, 3 route des Autels Saint-Bazile, 61200 Crouttes</p>"
+        },
+        {
+            "heading": "Hébergement",
+            "text": "<p>OVH SAS</p><p>2 rue Kellermann, 59100 Roubaix, France</p>"
+        },
+        {
+            "heading": "Propriété intellectuelle",
+            "text": "<p>L'ensemble du contenu de ce site (textes, images, photographies) est la propriété de SCI Five Stars. Toute reproduction est interdite sans autorisation préalable.</p>"
+        },
+        {
+            "heading": "Données personnelles",
+            "text": "<p>Les informations transmises via le formulaire de contact sont utilisées uniquement pour répondre à votre demande ou à votre demande de réservation. Elles ne sont ni partagées ni vendues à des tiers. Conformément à la réglementation en vigueur, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles.</p>"
+        },
+        {
+            "heading": "Cookies",
+            "text": "<p>Ce site utilise Matomo en mode anonymisé pour la mesure d'audience et l'amélioration de l'expérience de navigation. Aucun cookie publicitaire n'est utilisé.</p>"
+        },
+        {
+            "heading": "Déclaration meublé de tourisme",
+            "text": "<p>Déclaration en mairie de Crouttes en cours.</p>"
+        }
+    ]
+}

@@ -1,0 +1,30 @@
+{
+    "hero_label": "LEGAL NOTICE",
+    "hero_heading": "Legal notice",
+    "sections": [
+        {
+            "heading": "Site publisher",
+            "text": "<p>SCI Five Stars<br>3 route des Autels Saint-Bazile<br>61200 Crouttes<br>France</p>"
+        },
+        {
+            "heading": "Hosting",
+            "text": "<p>OVH SAS<br>2 rue Kellermann<br>59100 Roubaix<br>France</p>"
+        },
+        {
+            "heading": "Intellectual property",
+            "text": "<p>All content on this website (texts, photographs, illustrations, graphic elements) is the property of SCI Five Stars. Any reproduction, even partial, is prohibited without prior written consent.</p>"
+        },
+        {
+            "heading": "Personal data",
+            "text": "<p>The information submitted through the contact form is used only to reply to your enquiry or booking request. It is not shared with or sold to third parties. In accordance with applicable regulations, you have the right to access, rectify and delete your personal data.</p>"
+        },
+        {
+            "heading": "Cookies",
+            "text": "<p>This website uses Matomo in anonymised mode for audience measurement and to improve the browsing experience. No advertising cookies are used.</p>"
+        },
+        {
+            "heading": "Tourism registration",
+            "text": "<p>Registration with Crouttes town hall pending.</p>"
+        }
+    ]
+}

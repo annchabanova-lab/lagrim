@@ -1,0 +1,49 @@
+{
+    "hero_label": "THE HOUSE",
+    "hero_heading": "The little house",
+    "hero_image": "/images/lg-P04-facade-hortensias-lg.webp",
+    "intro_heading": "An independent house within the estate",
+    "intro_text": "<p>The little house sits within the grounds of La Grimouillière, in the Pays d'Auge region of Normandy. Originally a 17th-century residential home, it has been fully renovated to offer the comfort of today while preserving its authentic character.</p><p>The little house is independent, with its own garden facing the opposite side from the main house, so there is no facing view. It offers real privacy while remaining easy to access.</p><p>On the ground floor, the dining room with its fireplace is the common living space of the house — a warm, welcoming place to share meals and gather at the end of the day. It leads into a living room with a large table, thought out for reading, board games, quality time together and also for a few days of remote working. The boudoir with TV completes the ground floor and can be used as an additional sleeping room whenever needed.</p><p>Upstairs are the two real bedrooms, under the beams, along with an adjoining room featuring two single beds — a particularly practical arrangement for a couple travelling with children.</p>",
+    "intro_image": "/images/lg-extra-facade-guirlandes-lg.webp",
+    "summary": [
+        {
+            "title": "The house",
+            "items": [
+                "17th-century residential house, fully renovated",
+                "Up to 6 guests",
+                "Private garden with no facing view",
+                "Pets not allowed"
+            ]
+        },
+        {
+            "title": "Living spaces",
+            "items": [
+                "Dining room with fireplace",
+                "Living room with a large table for reading, gathering and remote working",
+                "A boudoir with TV on the ground floor, usable as an additional sleeping room"
+            ]
+        },
+        {
+            "title": "Sleeping areas & bathrooms",
+            "items": [
+                "Two true bedrooms upstairs",
+                "An adjoining room with two single beds",
+                "One bathroom upstairs",
+                "Two independent WCs, one per floor"
+            ]
+        },
+        {
+            "title": "Amenities & services",
+            "items": [
+                "Fully equipped kitchen: dishwasher, oven, refrigerator, Nespresso",
+                "Laundry room with washing machine and dryer",
+                "Household linen provided",
+                "High-speed Starlink Wi-Fi",
+                "Parking on the property",
+                "Pool access from 1pm to 6pm, May to end of September"
+            ]
+        }
+    ],
+    "comfort_heading": "Designed for families",
+    "comfort_text": "<p>Designed to comfortably welcome a family, a couple or a small group of loved ones, the little house is equally suited to a weekend getaway and to a longer stay.</p><p>It is particularly well suited to a couple with children, thanks to the adjoining room with two single beds, but can also accommodate other configurations depending on your needs.</p><p>The living room, with its large table, also makes it easy to plan a few days of remote working in a calm and inspiring setting.</p>"
+}

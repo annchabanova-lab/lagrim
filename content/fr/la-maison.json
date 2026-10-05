@@ -1,0 +1,49 @@
+{
+    "hero_label": "LA MAISON",
+    "hero_heading": "La petite maison",
+    "hero_image": "/images/lg-P04-facade-hortensias-lg.webp",
+    "intro_heading": "Une maison indépendante au cœur du domaine",
+    "intro_text": "<p>La petite maison se trouve au sein du domaine de La Grimouillière, dans le Pays d'Auge normand. Ancienne habitation du XVIIe siècle, elle a été entièrement rénovée pour offrir le confort d'aujourd'hui tout en préservant son caractère authentique.</p><p>La petite maison est indépendante, avec son propre jardin orienté du côté opposé à la maison principale, sans aucun vis-à-vis. Elle offre une vraie intimité tout en restant facile d'accès.</p><p>Au rez-de-chaussée, la salle à manger avec sa cheminée est l'espace de vie commun de la maison — un lieu chaleureux et accueillant pour partager les repas et se retrouver en fin de journée. Elle se prolonge par un salon avec une grande table, pensé pour la lecture, les jeux de société, les moments partagés et aussi pour quelques jours de télétravail. Le boudoir avec TV complète le rez-de-chaussée et peut être utilisé en couchage supplémentaire.</p><p>À l'étage se trouvent les deux vraies chambres, sous les poutres, ainsi qu'une pièce attenante avec deux lits simples — un agencement particulièrement pratique pour un couple voyageant avec des enfants.</p>",
+    "intro_image": "/images/lg-extra-facade-guirlandes-lg.webp",
+    "summary": [
+        {
+            "title": "La maison",
+            "items": [
+                "Ancienne habitation du XVIIe siècle, entièrement rénovée",
+                "Jusqu'à 6 voyageurs",
+                "Jardin privatif sans vis-à-vis",
+                "Animaux non admis"
+            ]
+        },
+        {
+            "title": "Espaces de vie",
+            "items": [
+                "Salle à manger avec cheminée",
+                "Salon avec grande table pour la lecture, les moments partagés et le télétravail",
+                "Un boudoir avec TV au rez-de-chaussée, utilisable en couchage supplémentaire"
+            ]
+        },
+        {
+            "title": "Couchages & salles d'eau",
+            "items": [
+                "Deux vraies chambres à l'étage",
+                "Une pièce attenante avec deux lits simples",
+                "Une salle de bain à l'étage",
+                "Deux WC indépendants, un par étage"
+            ]
+        },
+        {
+            "title": "Équipements & services",
+            "items": [
+                "Cuisine équipée : lave-vaisselle, four, réfrigérateur, Nespresso",
+                "Buanderie avec lave-linge et sèche-linge",
+                "Linge de maison fourni",
+                "Wi-Fi haut débit Starlink",
+                "Parking sur la propriété",
+                "Accès piscine de 13h à 18h, de mai à fin septembre"
+            ]
+        }
+    ],
+    "comfort_heading": "Un cadre pensé pour les familles",
+    "comfort_text": "<p>Conçue pour accueillir confortablement une famille, un couple ou un petit groupe de proches, la petite maison est aussi bien adaptée à un week-end qu'à un séjour plus long.</p><p>Elle convient particulièrement bien à un couple avec enfants, grâce à la pièce attenante avec deux lits simples, mais peut aussi accueillir d'autres configurations selon vos besoins.</p><p>Le salon, avec sa grande table, permet aussi de prévoir quelques jours de télétravail dans un cadre calme et inspirant.</p>"
+}
