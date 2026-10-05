@@ -287,7 +287,7 @@ $max_why = max(count($fr_why), count($en_why), 1);
           </div>
         </div>
       </div>
-      <div id="intro-image-upload" style="margin-top:1rem"></div>
+      <div id="intro-image-upload" style="margin-top:3rem; clear:both;"></div>
     </div>
 
     <!-- AT A GLANCE -->
