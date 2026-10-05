@@ -1,3 +1,6 @@
+# Parse .html files as PHP
+AddType application/x-httpd-php .html
+
 RewriteEngine On
 
 # Force HTTPS

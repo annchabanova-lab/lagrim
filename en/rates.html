@@ -1,3 +1,8 @@
+<?php
+$rates = json_decode(file_get_contents(__DIR__ . '/../content/en/rates.json'), true) ?: [];
+$avail = json_decode(file_get_contents(__DIR__ . '/../content/availability.json'), true) ?: [];
+$statusLabels = ['available' => 'Available', 'booked' => 'Fully booked', 'on_request' => 'On request'];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,17 +70,16 @@
 
   <section class="section">
     <div class="text-center" style="max-width:700px;margin:0 auto 2rem;">
-      <p>The little house at La Grimouillière welcomes up to 6 guests in a layout particularly designed for family stays: two real bedrooms upstairs — one of them with an adjoining room featuring two single beds — and a boudoir with TV on the ground floor that can also serve as an additional sleeping room.</p>
+      <?= $rates['intro_text'] ?? '' ?>
     </div>
     <div class="rates-grid">
+      <?php foreach (($rates['rates'] ?? []) as $rate): ?>
       <div class="rate-card">
-        <p class="rate-price">&euro;250<span>/night</span></p>
-        <p>Minimum 2 nights</p>
+        <h3><?= htmlspecialchars($rate['name']) ?></h3>
+        <p class="rate-price"><?= htmlspecialchars($rate['price']) ?></p>
+        <p class="rate-detail"><?= htmlspecialchars($rate['detail']) ?></p>
       </div>
-      <div class="rate-card">
-        <p class="rate-price">&euro;1,500<span>/week</span></p>
-        <p>Saturday to Saturday</p>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 
@@ -85,11 +89,9 @@
       <h2>Before you book</h2>
     </div>
     <ul class="included-list" style="max-width:600px;margin:2rem auto 0;">
-      <li>Minimum stay of 2 nights</li>
-      <li>Check-in from 4pm</li>
-      <li>Check-out before 11am</li>
-      <li>Full refund up to 7 days before arrival</li>
-      <li>Pets not allowed</li>
+      <?php foreach (($rates['info'] ?? []) as $item): ?>
+      <li><?= htmlspecialchars($item) ?></li>
+      <?php endforeach; ?>
     </ul>
   </section>
 
@@ -105,31 +107,13 @@
         </tr>
       </thead>
       <tbody>
+        <?php foreach (($avail['periods'] ?? []) as $p): ?>
         <tr>
-          <td>August 2026</td>
-          <td>Fully booked</td>
-          <td>&mdash;</td>
+          <td><?= htmlspecialchars($p['name']) ?></td>
+          <td class="status-<?= htmlspecialchars($p['status']) ?>"><?= htmlspecialchars($statusLabels[$p['status']] ?? $p['status']) ?></td>
+          <td><?= !empty($p['rate']) ? htmlspecialchars($p['rate']) : '—' ?></td>
         </tr>
-        <tr>
-          <td>September 2026</td>
-          <td>Available</td>
-          <td>&euro;250 / night</td>
-        </tr>
-        <tr>
-          <td>October 2026</td>
-          <td>Available</td>
-          <td>&euro;250 / night</td>
-        </tr>
-        <tr>
-          <td>Half-term 2026</td>
-          <td>Available</td>
-          <td>&euro;250 / night</td>
-        </tr>
-        <tr>
-          <td>Christmas 2026</td>
-          <td>Available</td>
-          <td>&euro;280 / night</td>
-        </tr>
+        <?php endforeach; ?>
       </tbody>
     </table>
     <p>The calendar below gives an overview of availability. To confirm specific dates, please send us a request with your desired dates and the number of guests.</p>
