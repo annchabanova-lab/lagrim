@@ -27,8 +27,16 @@ foreach ($files as $f) {
 echo '</pre>';
 
 if (isset($_GET['fix'])) {
-    $data['hero']['image'] = 'images/lg-P06-maison-nuit';
-    file_put_contents(__DIR__ . '/../content/fr/homepage.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
-    echo '<p style="color:green;font-weight:bold;">Fixed! Reset to images/lg-P06-maison-nuit</p>';
+    $target = $_GET['fix'];
+    $allowed = [
+        'original' => 'images/lg-P06-maison-nuit',
+        'uploaded' => 'images/lg-photo-20261005-204410',
+    ];
+    if (isset($allowed[$target])) {
+        $data['hero']['image'] = $allowed[$target];
+        file_put_contents(__DIR__ . '/../content/fr/homepage.json', json_encode($data, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE));
+        echo '<p style="color:green;font-weight:bold;">Fixed! Set to ' . $allowed[$target] . '</p>';
+    }
 }
-echo '<p><a href="?fix=1" style="color:red;">Reset to original image</a></p>';
+echo '<p><a href="?fix=original" style="color:blue;">Set to original image (lg-P06-maison-nuit)</a></p>';
+echo '<p><a href="?fix=uploaded" style="color:green;">Set to uploaded image (lg-photo-20261005-204410)</a></p>';
