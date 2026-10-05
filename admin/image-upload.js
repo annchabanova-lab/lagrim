@@ -13,7 +13,7 @@ function createImageUpload(container, opts) {
   wrapper.className = 'img-upload';
 
   const currentPath = opts.value || '';
-  const previewSrc = currentPath ? ('/' + currentPath.replace(/^\//, '')) : '';
+  const previewSrc = currentPath ? ('/' + currentPath.replace(/^\//, '') + '-md.webp') : '';
 
   wrapper.innerHTML = `
     <label class="img-upload-label">${opts.label || 'Image'}</label>
@@ -111,7 +111,7 @@ function createImageUpload(container, opts) {
           errorEl.style.display = 'block';
           return;
         }
-        hiddenInput.value = res.paths.lg;
+        hiddenInput.value = res.base_path;
         previewImg.src = '/' + res.paths.md;
         preview.style.display = 'flex';
         placeholder.style.display = 'none';

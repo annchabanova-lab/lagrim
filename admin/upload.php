@@ -113,6 +113,7 @@ echo json_encode([
     'success' => true,
     'slug' => $slug,
     'base' => $baseName,
+    'base_path' => 'images/' . $baseName,
     'paths' => $paths,
     'fallback' => 'images/' . $fallbackName,
     'preview' => $paths['md'],
