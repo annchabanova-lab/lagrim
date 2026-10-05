@@ -27,22 +27,10 @@ if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp', 'image/gif'])) {
     exit;
 }
 
-// Use existing base name if provided (replaces the current image)
-// Otherwise generate from field name or timestamp
-$baseName = '';
-$currentPath = trim($_POST['current'] ?? '');
-if ($currentPath !== '') {
-    // Extract base name from existing path: "images/lg-P06-maison-nuit" → "lg-P06-maison-nuit"
-    $baseName = basename($currentPath);
-    $baseName = preg_replace('/\.(webp|jpg|jpeg|png)$/i', '', $baseName);
-    $baseName = preg_replace('/-(sm|md|lg)$/', '', $baseName);
-}
-
-if (empty($baseName)) {
-    $fieldName = trim($_POST['field'] ?? 'photo');
-    $fieldName = preg_replace('/[^a-z0-9-]/', '-', strtolower($fieldName));
-    $baseName = 'lg-' . $fieldName . '-' . date('Ymd-His');
-}
+// Always generate a unique filename to avoid browser cache issues
+$fieldName = trim($_POST['field'] ?? 'photo');
+$fieldName = preg_replace('/[^a-z0-9-]/', '-', strtolower($fieldName));
+$baseName = 'lg-' . $fieldName . '-' . date('Ymd-His');
 
 $imagesDir = __DIR__ . '/../images/';
 
