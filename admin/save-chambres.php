@@ -7,9 +7,12 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+$hero_image = trim($_POST['hero_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
 
 $fr_data = [
+    'hero_heading' => trim($_POST['fr_hero_heading'] ?? ''),
+    'hero_image' => $hero_image,
     'intro_text' => $_POST['fr_intro_text'] ?? '',
     'rooms' => [],
     'ideal_heading' => trim($_POST['fr_ideal_heading'] ?? ''),
@@ -17,6 +20,8 @@ $fr_data = [
     'cta_image' => $cta_image,
 ];
 $en_data = [
+    'hero_heading' => trim($_POST['en_hero_heading'] ?? ''),
+    'hero_image' => $hero_image,
     'intro_text' => $_POST['en_intro_text'] ?? '',
     'rooms' => [],
     'ideal_heading' => trim($_POST['en_ideal_heading'] ?? ''),

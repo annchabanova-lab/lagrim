@@ -73,6 +73,28 @@ $max_rooms = max(count($fr_rooms), count($en_rooms));
 
   <form method="POST" action="save-chambres.php" id="chambres-form">
 
+    <!-- HERO -->
+    <div class="section-card">
+      <h3>Hero (bandeau haut / top banner)</h3>
+      <div class="bilingual-row">
+        <div class="lang-col">
+          <h4 class="fr">FR</h4>
+          <div class="field-group">
+            <label>Titre</label>
+            <input type="text" name="fr_hero_heading" value="<?= htmlspecialchars($fr['hero_heading'] ?? '') ?>">
+          </div>
+        </div>
+        <div class="lang-col">
+          <h4 class="en">EN</h4>
+          <div class="field-group">
+            <label>Heading</label>
+            <input type="text" name="en_hero_heading" value="<?= htmlspecialchars($en['hero_heading'] ?? '') ?>">
+          </div>
+        </div>
+      </div>
+      <div id="hero-image-upload" style="margin-top:1rem"></div>
+    </div>
+
     <!-- INTRO TEXT -->
     <div class="section-card">
       <h3>Texte d'introduction / Introduction text</h3>
@@ -282,6 +304,12 @@ function initRoomImageUpload(el) {
 
 // Initialize all existing room image uploads
 document.querySelectorAll('.room-image-upload').forEach(initRoomImageUpload);
+
+createImageUpload(document.getElementById('hero-image-upload'), {
+  name: 'hero_image',
+  value: '<?= htmlspecialchars($fr['hero_image'] ?? '', ENT_QUOTES) ?>',
+  label: 'Image hero / Hero image'
+});
 
 createImageUpload(document.getElementById('cta-image-upload'), {
   name: 'cta_image',
