@@ -17,6 +17,7 @@ jobs:
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: /www/
+          dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
@@ -26,3 +27,4 @@ jobs:
             **/node_modules/**
             **/.claude/**
             **/CLAUDE.md
+            **/content/**
