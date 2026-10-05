@@ -2,50 +2,24 @@
 require_once 'config.php';
 require_login();
 
-$lang = ($_GET['lang'] ?? 'fr') === 'en' ? 'en' : 'fr';
-$file = $lang === 'fr' ? 'fr/tarifs.json' : 'en/rates.json';
-$data = load_json($file);
-
+$fr = load_json('fr/tarifs.json');
+$en = load_json('en/rates.json');
 $saved = isset($_GET['saved']);
 
-$labels = [
-    'fr' => [
-        'title' => 'Tarifs',
-        'intro' => 'Texte d\'introduction',
-        'rates' => 'Grille tarifaire',
-        'rate_name' => 'Nom',
-        'rate_price' => 'Prix',
-        'rate_detail' => 'Détail',
-        'add_rate' => '+ Ajouter un tarif',
-        'info_title' => 'Bon à savoir',
-        'info_add' => '+ Ajouter une information',
-        'save' => 'ENREGISTRER',
-        'back' => '← Retour',
-        'preview' => 'Aperçu',
-    ],
-    'en' => [
-        'title' => 'Rates',
-        'intro' => 'Introduction text',
-        'rates' => 'Rate cards',
-        'rate_name' => 'Name',
-        'rate_price' => 'Price',
-        'rate_detail' => 'Detail',
-        'add_rate' => '+ Add a rate',
-        'info_title' => 'Good to know',
-        'info_add' => '+ Add an item',
-        'save' => 'SAVE',
-        'back' => '← Back',
-        'preview' => 'Preview',
-    ],
-];
-$l = $labels[$lang];
+$fr_rates = $fr['rates'] ?? [];
+$en_rates = $en['rates'] ?? [];
+$max_rates = max(count($fr_rates), count($en_rates));
+
+$fr_info = $fr['info'] ?? [];
+$en_info = $en['info'] ?? [];
+$max_info = max(count($fr_info), count($en_info));
 ?>
 <!DOCTYPE html>
-<html lang="<?= $lang ?>">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Admin — <?= $l['title'] ?></title>
+<title>Admin — Tarifs / Rates</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.snow.css" rel="stylesheet">
 <style>
@@ -75,38 +49,19 @@ $l = $labels[$lang];
     top: 0;
     z-index: 100;
   }
-  .admin-header h1 {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.2rem;
-  }
-  .admin-header a {
-    color: var(--taupe-light);
-    text-decoration: none;
-    font-size: 0.85rem;
-  }
+  .admin-header h1 { font-family: 'Playfair Display', serif; font-size: 1.2rem; }
+  .admin-header a { color: var(--taupe-light); text-decoration: none; font-size: 0.85rem; }
   .admin-header a:hover { color: var(--tuile); }
   .editor-wrap {
-    max-width: 800px;
+    max-width: 1100px;
     margin: 2rem auto;
     padding: 0 1rem 4rem;
   }
   .editor-title {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
-    margin-bottom: 0.3rem;
-  }
-  .lang-badge {
-    display: inline-block;
-    font-size: 0.7rem;
-    padding: 2px 8px;
-    border-radius: 3px;
-    font-weight: 500;
-    letter-spacing: 0.5px;
     margin-bottom: 1.5rem;
   }
-  .badge-fr { background: #e8f0e4; color: var(--sauge-dark); }
-  .badge-en { background: #fde8d8; color: var(--tuile); }
-
   .section-card {
     background: white;
     border-radius: 10px;
@@ -115,7 +70,6 @@ $l = $labels[$lang];
     box-shadow: 0 2px 8px rgba(74,64,56,0.06);
   }
   .section-card h3 {
-    font-size: 0.9rem;
     font-weight: 600;
     margin-bottom: 1rem;
     color: var(--sauge-dark);
@@ -123,15 +77,29 @@ $l = $labels[$lang];
     letter-spacing: 1px;
     font-size: 0.75rem;
   }
-
+  .bilingual-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .lang-col h4 {
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 3px;
+  }
+  .lang-col h4.fr { background: #e8f0e4; color: var(--sauge-dark); }
+  .lang-col h4.en { background: #fde8d8; color: var(--tuile); }
   .field-group {
-    margin-bottom: 1rem;
+    margin-bottom: 0.75rem;
   }
   .field-group label {
     display: block;
-    font-size: 0.8rem;
+    font-size: 0.75rem;
     font-weight: 500;
-    margin-bottom: 0.3rem;
+    margin-bottom: 0.2rem;
     color: var(--taupe-light);
   }
   .field-group input, .field-group textarea {
@@ -147,27 +115,30 @@ $l = $labels[$lang];
     outline: none;
     border-color: var(--sauge);
   }
-  .field-group textarea { resize: vertical; min-height: 80px; }
-
-  .rate-row {
-    display: grid;
-    grid-template-columns: 2fr 1fr 2fr auto;
-    gap: 0.75rem;
-    align-items: end;
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.75rem;
+  .rate-item {
     border-bottom: 1px solid #f0ede6;
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    position: relative;
   }
-  .rate-row:last-of-type { border-bottom: none; }
-
-  .info-row {
-    display: flex;
-    gap: 0.75rem;
+  .rate-item:last-of-type { border-bottom: none; }
+  .rate-item .rate-fields {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+  .rate-item .rate-side {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 0.5rem;
+  }
+  .info-item {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 1rem;
     align-items: center;
     margin-bottom: 0.5rem;
   }
-  .info-row input { flex: 1; }
-
   .btn-remove {
     background: none;
     border: none;
@@ -178,7 +149,11 @@ $l = $labels[$lang];
     line-height: 1;
   }
   .btn-remove:hover { color: var(--tuile); }
-
+  .btn-remove-rate {
+    position: absolute;
+    top: 0;
+    right: 0;
+  }
   .btn-add {
     background: none;
     border: 1px dashed var(--sauge);
@@ -191,7 +166,6 @@ $l = $labels[$lang];
     margin-top: 0.5rem;
   }
   .btn-add:hover { background: #f0f5ed; }
-
   .btn-save {
     background: var(--tuile);
     color: white;
@@ -208,7 +182,6 @@ $l = $labels[$lang];
     margin-top: 1rem;
   }
   .btn-save:hover { opacity: 0.9; }
-
   .toast {
     position: fixed;
     bottom: 2rem;
@@ -222,188 +195,168 @@ $l = $labels[$lang];
     animation: fadeIn 0.3s ease;
   }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
   .ql-container { font-family: 'Poppins', sans-serif; font-size: 0.9rem; }
-  .ql-editor { min-height: 100px; }
-
-  .preview-box {
-    background: var(--creme);
-    border: 1px solid #e0dcd5;
-    border-radius: 8px;
-    padding: 1.5rem;
-    margin-top: 1rem;
-  }
-  .preview-box .rate-card-preview {
-    display: inline-block;
-    background: white;
-    border-radius: 8px;
-    padding: 1.5rem 2rem;
-    text-align: center;
-    margin: 0.5rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .preview-box .rate-card-preview h4 {
-    font-family: 'Playfair Display', serif;
-    font-size: 0.9rem;
-    margin-bottom: 0.3rem;
-  }
-  .preview-box .rate-card-preview .price {
-    font-family: 'Playfair Display', serif;
-    font-size: 1.8rem;
-    color: var(--tuile);
-  }
-  .preview-box .rate-card-preview .detail {
-    font-size: 0.8rem;
-    color: var(--taupe-light);
+  .ql-editor { min-height: 80px; }
+  @media (max-width: 768px) {
+    .bilingual-row, .rate-item .rate-fields, .info-item { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 <div class="admin-header">
-  <div>
-    <a href="dashboard.php"><?= $l['back'] ?></a>
-  </div>
-  <h1><?= $l['title'] ?></h1>
+  <a href="dashboard.php">&larr; Retour</a>
+  <h1>Tarifs / Rates</h1>
   <a href="logout.php">Déconnexion</a>
 </div>
 
 <div class="editor-wrap">
-  <h2 class="editor-title"><?= $l['title'] ?></h2>
-  <span class="lang-badge badge-<?= $lang ?>"><?= strtoupper($lang) ?></span>
+  <h2 class="editor-title">Tarifs / Rates</h2>
 
   <form method="POST" action="save-tarifs.php" id="tarifs-form">
-    <input type="hidden" name="lang" value="<?= $lang ?>">
 
+    <!-- INTRO TEXT -->
     <div class="section-card">
-      <h3><?= $l['intro'] ?></h3>
-      <div id="intro-editor"><?= $data['intro_text'] ?? '' ?></div>
-      <input type="hidden" name="intro_text" id="intro-text-input">
+      <h3>Texte d'introduction / Introduction text</h3>
+      <div class="bilingual-row">
+        <div class="lang-col">
+          <h4 class="fr">FR</h4>
+          <div id="intro-editor-fr"><?= $fr['intro_text'] ?? '' ?></div>
+          <input type="hidden" name="fr_intro_text" id="fr-intro-input">
+        </div>
+        <div class="lang-col">
+          <h4 class="en">EN</h4>
+          <div id="intro-editor-en"><?= $en['intro_text'] ?? '' ?></div>
+          <input type="hidden" name="en_intro_text" id="en-intro-input">
+        </div>
+      </div>
     </div>
 
+    <!-- RATES -->
     <div class="section-card">
-      <h3><?= $l['rates'] ?></h3>
+      <h3>Grille tarifaire / Rate cards</h3>
       <div id="rates-container">
-        <?php
-        $rates = $data['rates'] ?? [];
-        foreach ($rates as $i => $rate): ?>
-        <div class="rate-row">
-          <div class="field-group">
-            <label><?= $l['rate_name'] ?></label>
-            <input type="text" name="rates[<?= $i ?>][name]" value="<?= htmlspecialchars($rate['name'] ?? '') ?>">
+        <?php for ($i = 0; $i < $max_rates; $i++): ?>
+        <div class="rate-item">
+          <button type="button" class="btn-remove btn-remove-rate" onclick="this.closest('.rate-item').remove();">&times;</button>
+          <div class="rate-fields">
+            <div class="rate-side">
+              <?php if ($i === 0): ?><div style="grid-column:1/-1"><h4 class="fr" style="font-size:0.8rem;font-weight:600;display:inline-block;padding:2px 10px;border-radius:3px;background:#e8f0e4;color:var(--sauge-dark);">FR</h4></div><?php endif; ?>
+              <div class="field-group">
+                <label>Nom</label>
+                <input type="text" name="fr_rates[<?= $i ?>][name]" value="<?= htmlspecialchars($fr_rates[$i]['name'] ?? '') ?>">
+              </div>
+              <div class="field-group">
+                <label>Prix</label>
+                <input type="text" name="fr_rates[<?= $i ?>][price]" value="<?= htmlspecialchars($fr_rates[$i]['price'] ?? '') ?>">
+              </div>
+              <div class="field-group" style="grid-column:1/-1">
+                <label>Détail</label>
+                <input type="text" name="fr_rates[<?= $i ?>][detail]" value="<?= htmlspecialchars($fr_rates[$i]['detail'] ?? '') ?>">
+              </div>
+            </div>
+            <div class="rate-side">
+              <?php if ($i === 0): ?><div style="grid-column:1/-1"><h4 class="en" style="font-size:0.8rem;font-weight:600;display:inline-block;padding:2px 10px;border-radius:3px;background:#fde8d8;color:var(--tuile);">EN</h4></div><?php endif; ?>
+              <div class="field-group">
+                <label>Name</label>
+                <input type="text" name="en_rates[<?= $i ?>][name]" value="<?= htmlspecialchars($en_rates[$i]['name'] ?? '') ?>">
+              </div>
+              <div class="field-group">
+                <label>Price</label>
+                <input type="text" name="en_rates[<?= $i ?>][price]" value="<?= htmlspecialchars($en_rates[$i]['price'] ?? '') ?>">
+              </div>
+              <div class="field-group" style="grid-column:1/-1">
+                <label>Detail</label>
+                <input type="text" name="en_rates[<?= $i ?>][detail]" value="<?= htmlspecialchars($en_rates[$i]['detail'] ?? '') ?>">
+              </div>
+            </div>
           </div>
-          <div class="field-group">
-            <label><?= $l['rate_price'] ?></label>
-            <input type="text" name="rates[<?= $i ?>][price]" value="<?= htmlspecialchars($rate['price'] ?? '') ?>">
-          </div>
-          <div class="field-group">
-            <label><?= $l['rate_detail'] ?></label>
-            <input type="text" name="rates[<?= $i ?>][detail]" value="<?= htmlspecialchars($rate['detail'] ?? '') ?>">
-          </div>
-          <button type="button" class="btn-remove" onclick="this.closest('.rate-row').remove();updatePreview();">×</button>
         </div>
-        <?php endforeach; ?>
+        <?php endfor; ?>
       </div>
-      <button type="button" class="btn-add" onclick="addRate()"><?= $l['add_rate'] ?></button>
-
-      <div class="preview-box" id="rates-preview"></div>
+      <button type="button" class="btn-add" onclick="addRate()">+ Ajouter un tarif / Add a rate</button>
     </div>
 
+    <!-- INFO -->
     <div class="section-card">
-      <h3><?= $l['info_title'] ?></h3>
-      <div id="info-container">
-        <?php
-        $info = $data['info'] ?? [];
-        foreach ($info as $i => $item): ?>
-        <div class="info-row">
-          <input type="text" name="info[]" value="<?= htmlspecialchars($item) ?>">
-          <button type="button" class="btn-remove" onclick="this.closest('.info-row').remove();">×</button>
-        </div>
-        <?php endforeach; ?>
+      <h3>Bon à savoir / Good to know</h3>
+      <div class="info-header" style="display:grid;grid-template-columns:1fr 1fr auto;gap:1rem;margin-bottom:0.5rem;">
+        <h4 class="fr" style="font-size:0.8rem;font-weight:600;display:inline-block;padding:2px 10px;border-radius:3px;background:#e8f0e4;color:var(--sauge-dark);width:fit-content;">FR</h4>
+        <h4 class="en" style="font-size:0.8rem;font-weight:600;display:inline-block;padding:2px 10px;border-radius:3px;background:#fde8d8;color:var(--tuile);width:fit-content;">EN</h4>
+        <div></div>
       </div>
-      <button type="button" class="btn-add" onclick="addInfo()"><?= $l['info_add'] ?></button>
+      <div id="info-container">
+        <?php for ($i = 0; $i < $max_info; $i++): ?>
+        <div class="info-item">
+          <input type="text" name="fr_info[]" value="<?= htmlspecialchars($fr_info[$i] ?? '') ?>">
+          <input type="text" name="en_info[]" value="<?= htmlspecialchars($en_info[$i] ?? '') ?>">
+          <button type="button" class="btn-remove" onclick="this.closest('.info-item').remove();">&times;</button>
+        </div>
+        <?php endfor; ?>
+      </div>
+      <button type="button" class="btn-add" onclick="addInfo()">+ Ajouter / Add</button>
     </div>
 
-    <button type="submit" class="btn-save"><?= $l['save'] ?></button>
+    <button type="submit" class="btn-save">ENREGISTRER / SAVE</button>
   </form>
 </div>
 
 <?php if ($saved): ?>
-<div class="toast" id="toast">Enregistré !</div>
+<div class="toast" id="toast">Enregistré / Saved !</div>
 <script>setTimeout(() => document.getElementById('toast').remove(), 3000);</script>
 <?php endif; ?>
 
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.2/dist/quill.js"></script>
 <script>
-const quill = new Quill('#intro-editor', {
-  theme: 'snow',
-  modules: {
-    toolbar: [
-      ['bold', 'italic'],
-      [{ 'header': [2, 3, false] }],
-      [{ 'list': 'ordered'}, { 'list': 'bullet' }],
-      ['clean']
-    ]
-  }
+const toolbarOpts = [
+  ['bold', 'italic'],
+  [{ 'list': 'ordered'}, { 'list': 'bullet' }],
+  ['clean']
+];
+
+const quillFr = new Quill('#intro-editor-fr', { theme: 'snow', modules: { toolbar: toolbarOpts } });
+const quillEn = new Quill('#intro-editor-en', { theme: 'snow', modules: { toolbar: toolbarOpts } });
+
+document.getElementById('tarifs-form').addEventListener('submit', function() {
+  document.getElementById('fr-intro-input').value = quillFr.root.innerHTML;
+  document.getElementById('en-intro-input').value = quillEn.root.innerHTML;
 });
 
-document.getElementById('tarifs-form').addEventListener('submit', function(e) {
-  document.getElementById('intro-text-input').value = quill.root.innerHTML;
-});
-
-let rateIndex = <?= count($rates) ?>;
+let rateIndex = <?= $max_rates ?>;
 
 function addRate() {
   const container = document.getElementById('rates-container');
-  const row = document.createElement('div');
-  row.className = 'rate-row';
-  row.innerHTML = `
-    <div class="field-group">
-      <label><?= $l['rate_name'] ?></label>
-      <input type="text" name="rates[${rateIndex}][name]" value="">
+  const item = document.createElement('div');
+  item.className = 'rate-item';
+  item.innerHTML = `
+    <button type="button" class="btn-remove btn-remove-rate" onclick="this.closest('.rate-item').remove();">&times;</button>
+    <div class="rate-fields">
+      <div class="rate-side">
+        <div class="field-group"><label>Nom</label><input type="text" name="fr_rates[${rateIndex}][name]"></div>
+        <div class="field-group"><label>Prix</label><input type="text" name="fr_rates[${rateIndex}][price]"></div>
+        <div class="field-group" style="grid-column:1/-1"><label>Détail</label><input type="text" name="fr_rates[${rateIndex}][detail]"></div>
+      </div>
+      <div class="rate-side">
+        <div class="field-group"><label>Name</label><input type="text" name="en_rates[${rateIndex}][name]"></div>
+        <div class="field-group"><label>Price</label><input type="text" name="en_rates[${rateIndex}][price]"></div>
+        <div class="field-group" style="grid-column:1/-1"><label>Detail</label><input type="text" name="en_rates[${rateIndex}][detail]"></div>
+      </div>
     </div>
-    <div class="field-group">
-      <label><?= $l['rate_price'] ?></label>
-      <input type="text" name="rates[${rateIndex}][price]" value="">
-    </div>
-    <div class="field-group">
-      <label><?= $l['rate_detail'] ?></label>
-      <input type="text" name="rates[${rateIndex}][detail]" value="">
-    </div>
-    <button type="button" class="btn-remove" onclick="this.closest('.rate-row').remove();updatePreview();">×</button>
   `;
-  container.appendChild(row);
+  container.appendChild(item);
   rateIndex++;
-  row.querySelectorAll('input').forEach(inp => inp.addEventListener('input', updatePreview));
 }
 
 function addInfo() {
   const container = document.getElementById('info-container');
-  const row = document.createElement('div');
-  row.className = 'info-row';
-  row.innerHTML = `
-    <input type="text" name="info[]" value="">
-    <button type="button" class="btn-remove" onclick="this.closest('.info-row').remove();">×</button>
+  const item = document.createElement('div');
+  item.className = 'info-item';
+  item.innerHTML = `
+    <input type="text" name="fr_info[]" value="">
+    <input type="text" name="en_info[]" value="">
+    <button type="button" class="btn-remove" onclick="this.closest('.info-item').remove();">&times;</button>
   `;
-  container.appendChild(row);
+  container.appendChild(item);
 }
-
-function updatePreview() {
-  const rows = document.querySelectorAll('.rate-row');
-  let html = '';
-  rows.forEach(row => {
-    const inputs = row.querySelectorAll('input');
-    const name = inputs[0]?.value || '';
-    const price = inputs[1]?.value || '';
-    const detail = inputs[2]?.value || '';
-    if (name || price) {
-      html += `<div class="rate-card-preview"><h4>${name}</h4><div class="price">${price}</div><div class="detail">${detail}</div></div>`;
-    }
-  });
-  document.getElementById('rates-preview').innerHTML = html || '<em style="color:#999;font-size:0.85rem;">Aperçu des tarifs</em>';
-}
-
-document.querySelectorAll('.rate-row input').forEach(inp => inp.addEventListener('input', updatePreview));
-updatePreview();
 </script>
 </body>
 </html>

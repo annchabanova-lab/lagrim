@@ -120,17 +120,11 @@ require_login();
 
   <p class="section-label">Tarifs & Disponibilités</p>
   <div class="page-grid">
-    <a href="edit-tarifs.php?lang=fr" class="page-card">
+    <a href="edit-tarifs.php" class="page-card">
       <div class="icon">💰</div>
-      <h3>Tarifs</h3>
-      <p>Prix par nuit, par semaine, informations pratiques</p>
-      <span class="badge badge-fr">FR</span>
-    </a>
-    <a href="edit-tarifs.php?lang=en" class="page-card">
-      <div class="icon">💰</div>
-      <h3>Rates</h3>
-      <p>Price per night, per week, practical info</p>
-      <span class="badge badge-en">EN</span>
+      <h3>Tarifs / Rates</h3>
+      <p>Prix, informations pratiques — FR et EN côte à côte</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
     </a>
     <a href="edit-availability.php" class="page-card">
       <div class="icon">📅</div>
