@@ -1,6 +1,7 @@
 <?php
 require_once 'config.php';
 require_login();
+echo "v2 - " . date('H:i:s') . "<br>";
 
 $defaults = [
     'fr/homepage.json' => ['nested' => true, 'val' => 'images/lg-P13-facade-jour-banc'],
