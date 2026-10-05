@@ -266,28 +266,33 @@ $max_why = max(count($fr_why), count($en_why), 1);
 
     <!-- INTRO -->
     <div class="section-card">
-      <h3>Introduction</h3>
+      <h3>Introduction — Texte</h3>
       <div class="bilingual-row">
         <div class="lang-col">
           <h4 class="fr">FR</h4>
           <div id="intro-editor-fr"><?= $fr['intro']['text'] ?? '' ?></div>
           <input type="hidden" name="fr_intro_text" id="fr-intro-input">
-          <div class="field-group" style="margin-top:0.75rem">
-            <label>Bouton</label>
-            <input type="text" name="fr_intro_cta" value="<?= htmlspecialchars($fr['intro']['cta_text'] ?? '') ?>">
-          </div>
         </div>
         <div class="lang-col">
           <h4 class="en">EN</h4>
           <div id="intro-editor-en"><?= $en['intro']['text'] ?? '' ?></div>
           <input type="hidden" name="en_intro_text" id="en-intro-input">
-          <div class="field-group" style="margin-top:0.75rem">
-            <label>Button</label>
-            <input type="text" name="en_intro_cta" value="<?= htmlspecialchars($en['intro']['cta_text'] ?? '') ?>">
-          </div>
         </div>
       </div>
-      <div id="intro-image-upload" style="margin-top:3rem; clear:both;"></div>
+    </div>
+    <div class="section-card">
+      <h3>Introduction — Bouton & Image</h3>
+      <div class="bilingual-row" style="margin-bottom:1.5rem;">
+        <div class="field-group">
+          <label>Bouton (FR)</label>
+          <input type="text" name="fr_intro_cta" value="<?= htmlspecialchars($fr['intro']['cta_text'] ?? '') ?>">
+        </div>
+        <div class="field-group">
+          <label>Button (EN)</label>
+          <input type="text" name="en_intro_cta" value="<?= htmlspecialchars($en['intro']['cta_text'] ?? '') ?>">
+        </div>
+      </div>
+      <div id="intro-image-upload"></div>
     </div>
 
     <!-- AT A GLANCE -->
