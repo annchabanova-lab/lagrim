@@ -12,8 +12,9 @@ function createImageUpload(container, opts) {
   const wrapper = document.createElement('div');
   wrapper.className = 'img-upload';
 
-  const currentPath = opts.value || '';
-  const previewSrc = currentPath ? ('/' + currentPath.replace(/^\//, '') + '-md.webp') : '';
+  // Normalize path: strip leading /, strip -sm/-md/-lg suffix and .webp/.jpg extension
+  let currentPath = (opts.value || '').replace(/^\//, '').replace(/-(sm|md|lg)\.(webp|jpg|jpeg|png)$/i, '').replace(/\.(webp|jpg|jpeg|png)$/i, '');
+  const previewSrc = currentPath ? ('/' + currentPath + '-md.webp') : '';
 
   wrapper.innerHTML = `
     <label class="img-upload-label">${opts.label || 'Image'}</label>
