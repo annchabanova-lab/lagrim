@@ -1,3 +1,6 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/content/fr/contact.json'), true) ?: [];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -57,18 +60,17 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="section-label">CONTACT</p>
-      <h1>Nous contacter</h1>
+      <h1><?= htmlspecialchars($data['hero_heading'] ?? 'Nous contacter') ?></h1>
     </div>
   </section>
 
   <section class="section">
     <div class="text-center" style="max-width:700px;margin:0 auto 2rem;">
-      <p>Une question, une demande de réservation, ou besoin d'informations sur les disponibilités de la petite maison ? N'hésitez pas à nous écrire — nous vous répondrons dans les meilleurs délais.</p>
-      <p style="margin-top:1rem;">La petite maison de La Grimouillière convient particulièrement bien aux séjours en famille, grâce à son agencement avec deux chambres à l'étage, une pièce attenante avec deux lits simples, et un boudoir avec TV au rez-de-chaussée.</p>
+      <?= $data['intro_text'] ?? '' ?>
     </div>
     <div class="contact-grid" style="max-width:900px;margin:0 auto;">
       <div class="contact-form-col">
-        <p style="font-size:0.85rem;color:var(--taupe-light);margin-bottom:1.5rem;">Pour nous répondre au mieux, merci d'indiquer vos dates de séjour, le nombre de voyageurs et toute information utile concernant votre demande.</p>
+        <p style="font-size:0.85rem;color:var(--taupe-light);margin-bottom:1.5rem;"><?= htmlspecialchars($data['form_hint'] ?? '') ?></p>
         <form action="https://formsubmit.co/contact@lagrimouilliere.fr" method="POST" id="contact-form">
           <input type="hidden" name="_subject" value="Nouvelle demande — La Grimouillière">
           <input type="hidden" name="_next" value="https://lagrimouilliere.fr/merci.html">
@@ -119,17 +121,17 @@
       </div>
       <div class="contact-info">
         <h3>Informations pratiques</h3>
-        <p>3 route des Autels Saint-Bazile<br>61200 Crouttes</p>
-        <p>2h15 de Paris-Porte Maillot</p>
+        <p><?= nl2br(htmlspecialchars($data['address'] ?? '')) ?></p>
+        <p><?= htmlspecialchars($data['distance'] ?? '') ?></p>
         <p style="margin-top:0.5rem;"><a href="https://maps.google.com/?q=3+route+des+Autels+Saint-Bazile,+61200+Crouttes,+France" target="_blank" rel="noopener">Voir sur Google Maps</a></p>
         <h3>Horaires</h3>
-        <p>Check-in : à partir de 16h</p>
-        <p>Check-out : avant 11h</p>
+        <p>Check-in : <?= htmlspecialchars($data['checkin'] ?? '') ?></p>
+        <p>Check-out : <?= htmlspecialchars($data['checkout'] ?? '') ?></p>
         <h3>Annulation</h3>
-        <p>Remboursement intégral jusqu'à 7 jours avant l'arrivée.</p>
-        <p>Animaux non admis.</p>
+        <p><?= htmlspecialchars($data['cancellation'] ?? '') ?></p>
+        <p><?= htmlspecialchars($data['pets'] ?? '') ?></p>
         <h3>Suivez-nous</h3>
-        <p><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener">@lagrimflow</a></p>
+        <p><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener"><?= htmlspecialchars($data['instagram'] ?? '') ?></a></p>
       </div>
     </div>
   </section>

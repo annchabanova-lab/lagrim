@@ -1,3 +1,6 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/../content/en/contact.json'), true) ?: [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,14 +62,13 @@
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="section-label">CONTACT</p>
-      <h1>Get in touch</h1>
+      <h1><?= htmlspecialchars($data['hero_heading'] ?? 'Get in touch') ?></h1>
     </div>
   </section>
 
   <section class="section">
     <div class="text-center" style="max-width:700px;margin:0 auto 2rem;">
-      <p>A question, a booking request, or need for information about availability at the little house? Please reach out — we will be happy to reply as soon as possible.</p>
-      <p style="margin-top:1rem;">The little house at La Grimouillière is particularly well suited to family stays, thanks to its layout with two upstairs bedrooms, an adjoining room with two single beds, and a ground-floor boudoir with TV.</p>
+      <?= $data['intro_text'] ?? '' ?>
     </div>
     <div class="contact-grid" style="max-width:900px;margin:0 auto;">
       <form class="contact-form" action="https://formsubmit.co/contact@lagrimouilliere.fr" method="POST">
@@ -74,7 +76,7 @@
         <input type="hidden" name="_next" value="https://lagrimouilliere.fr/en/thank-you.html">
         <input type="hidden" name="_captcha" value="false">
         <input type="text" name="_honey" style="display:none">
-        <p style="font-size:0.85rem;color:var(--taupe-light);margin-bottom:1.5rem;">To help us answer you as accurately as possible, please share your travel dates, the number of guests and any useful information about your request.</p>
+        <p style="font-size:0.85rem;color:var(--taupe-light);margin-bottom:1.5rem;"><?= htmlspecialchars($data['form_hint'] ?? '') ?></p>
         <div class="form-group">
           <label for="name">Name</label>
           <input type="text" id="name" name="name" required>
@@ -115,22 +117,22 @@
       <div class="contact-info">
         <div class="contact-block">
           <h3>Practical information</h3>
-          <p>3 route des Autels Saint-Bazile<br>61200 Crouttes<br>Pays d'Auge, Normandy</p>
-          <p style="margin-top:0.5rem;">2h15 from Paris-Porte Maillot</p>
+          <p><?= nl2br(htmlspecialchars($data['address'] ?? '')) ?></p>
+          <p style="margin-top:0.5rem;"><?= htmlspecialchars($data['distance'] ?? '') ?></p>
           <p style="margin-top:0.5rem;"><a href="https://maps.google.com/?q=3+route+des+Autels+Saint-Bazile,+61200+Crouttes,+France" target="_blank" rel="noopener">View on Google Maps</a></p>
         </div>
         <div class="contact-block">
           <h3>Hours</h3>
-          <p>Check-in: 4 pm<br>Check-out: 11 am</p>
+          <p>Check-in: <?= htmlspecialchars($data['checkin'] ?? '') ?><br>Check-out: <?= htmlspecialchars($data['checkout'] ?? '') ?></p>
         </div>
         <div class="contact-block">
           <h3>Cancellation</h3>
-          <p>Full refund up to 7 days before arrival.</p>
-          <p>Pets not allowed.</p>
+          <p><?= htmlspecialchars($data['cancellation'] ?? '') ?></p>
+          <p><?= htmlspecialchars($data['pets'] ?? '') ?></p>
         </div>
         <div class="contact-block">
           <h3>Follow us</h3>
-          <p><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener">@lagrimflow</a></p>
+          <p><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener"><?= htmlspecialchars($data['instagram'] ?? '') ?></a></p>
         </div>
       </div>
     </div>

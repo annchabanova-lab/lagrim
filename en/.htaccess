@@ -1,2 +1,8 @@
 RewriteEngine On
+RewriteRule ^the-house\.html$ the-house.php [L]
+RewriteRule ^bedrooms\.html$ bedrooms.php [L]
+RewriteRule ^nearby\.html$ nearby.php [L]
 RewriteRule ^rates\.html$ rates.php [L]
+RewriteRule ^contact\.html$ contact.php [L]
+RewriteRule ^faq\.html$ faq.php [L]
+RewriteRule ^legal\.html$ legal.php [L]

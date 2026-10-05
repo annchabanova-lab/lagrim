@@ -1,3 +1,28 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/content/fr/la-maison.json'), true) ?: [];
+function img_srcset($lgPath, $prefix = '') {
+    $sm = str_replace('-lg.', '-sm.', $lgPath);
+    $md = str_replace('-lg.', '-md.', $lgPath);
+    $jpg = preg_replace('/\.webp$/', '.jpg', $lgPath);
+    return '<picture>
+          <source type="image/webp"
+            srcset="' . $prefix . $sm . ' 400w, ' . $prefix . $md . ' 800w, ' . $prefix . $lgPath . ' 1600w"
+            sizes="100vw">
+          <img src="' . $prefix . $jpg . '" alt="" loading="lazy">
+        </picture>';
+}
+function img_srcset_half($lgPath, $prefix = '') {
+    $sm = str_replace('-lg.', '-sm.', $lgPath);
+    $md = str_replace('-lg.', '-md.', $lgPath);
+    $jpg = preg_replace('/\.webp$/', '.jpg', $lgPath);
+    return '<picture>
+          <source type="image/webp"
+            srcset="' . $prefix . $sm . ' 400w, ' . $prefix . $md . ' 800w, ' . $prefix . $lgPath . ' 1600w"
+            sizes="(max-width: 768px) 100vw, 50vw">
+          <img src="' . $prefix . $jpg . '" alt="" loading="lazy">
+        </picture>';
+}
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -49,36 +74,23 @@
 
   <section class="page-hero">
     <div class="hero-bg">
-        <picture>
-          <source type="image/webp"
-            srcset="images/lg-P04-facade-hortensias-sm.webp 400w, images/lg-P04-facade-hortensias-md.webp 800w, images/lg-P04-facade-hortensias-lg.webp 1600w"
-            sizes="100vw">
-          <img src="images/lg-P04-facade-hortensias.jpg" alt="La Grimouillière, façade aux hortensias" loading="lazy" width="800" height="600">
-        </picture>
+        <?= img_srcset($data['hero_image'] ?? '/images/lg-P04-facade-hortensias-lg.webp') ?>
       </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="section-label">LA MAISON</p>
-      <h1>La petite maison</h1>
+      <p class="section-label"><?= htmlspecialchars($data['hero_label'] ?? 'LA MAISON') ?></p>
+      <h1><?= htmlspecialchars($data['hero_heading'] ?? 'La petite maison') ?></h1>
     </div>
   </section>
 
   <section class="section">
     <div class="intro-grid">
       <div class="intro-image">
-        <picture>
-          <source type="image/webp"
-            srcset="images/lg-extra-facade-guirlandes-sm.webp 400w, images/lg-extra-facade-guirlandes-md.webp 800w, images/lg-extra-facade-guirlandes-lg.webp 1600w"
-            sizes="(max-width: 768px) 100vw, 50vw">
-          <img src="images/lg-extra-facade-guirlandes.jpg" alt="Façade de La Grimouillière avec guirlandes" loading="lazy" width="800" height="600">
-        </picture>
+        <?= img_srcset_half($data['intro_image'] ?? '/images/lg-extra-facade-guirlandes-lg.webp') ?>
       </div>
       <div class="intro-text">
-        <h2>Une maison indépendante au cœur du domaine</h2>
-        <p>La petite maison se trouve au sein du domaine de La Grimouillière, dans le Pays d'Auge normand. Ancienne habitation du XVIIe siècle, elle a été entièrement rénovée pour offrir le confort d'aujourd'hui tout en préservant son caractère authentique.</p>
-        <p>La petite maison est indépendante, avec son propre jardin orienté du côté opposé à la maison principale, sans aucun vis-à-vis. Elle offre une vraie intimité tout en restant facile d'accès.</p>
-        <p>Au rez-de-chaussée, la salle à manger avec sa cheminée est l'espace de vie commun de la maison — un lieu chaleureux et accueillant pour partager les repas et se retrouver en fin de journée. Elle se prolonge par un salon avec une grande table, pensé pour la lecture, les jeux de société, les moments partagés et aussi pour quelques jours de télétravail. Le boudoir avec TV complète le rez-de-chaussée et peut être utilisé en couchage supplémentaire.</p>
-        <p>À l'étage se trouvent les deux vraies chambres, sous les poutres, ainsi qu'une pièce attenante avec deux lits simples — un agencement particulièrement pratique pour un couple voyageant avec des enfants.</p>
+        <h2><?= htmlspecialchars($data['intro_heading'] ?? '') ?></h2>
+        <?= $data['intro_text'] ?? '' ?>
       </div>
     </div>
   </section>
@@ -88,52 +100,25 @@
       <p class="section-label">LA MAISON EN BREF</p>
     </div>
     <div class="nearby-grid" style="margin-top:2rem">
+      <?php foreach (($data['summary'] ?? []) as $card): ?>
       <div class="nearby-item">
-        <h3>La maison</h3>
+        <h3><?= htmlspecialchars($card['title'] ?? '') ?></h3>
         <ul class="included-list">
-          <li>Ancienne habitation du XVIIe siècle, entièrement rénovée</li>
-          <li>Jusqu'à 6 voyageurs</li>
-          <li>Jardin privatif sans vis-à-vis</li>
-          <li>Animaux non admis</li>
+          <?php foreach (($card['items'] ?? []) as $item): ?>
+          <li><?= htmlspecialchars($item) ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
-      <div class="nearby-item">
-        <h3>Espaces de vie</h3>
-        <ul class="included-list">
-          <li>Salle à manger avec cheminée</li>
-          <li>Salon avec grande table pour la lecture, les moments partagés et le télétravail</li>
-          <li>Un boudoir avec TV au rez-de-chaussée, utilisable en couchage supplémentaire</li>
-        </ul>
-      </div>
-      <div class="nearby-item">
-        <h3>Couchages & salles d'eau</h3>
-        <ul class="included-list">
-          <li>Deux vraies chambres à l'étage</li>
-          <li>Une pièce attenante avec deux lits simples</li>
-          <li>Une salle de bain à l'étage</li>
-          <li>Deux WC indépendants, un par étage</li>
-        </ul>
-      </div>
-      <div class="nearby-item">
-        <h3>Équipements & services</h3>
-        <ul class="included-list">
-          <li>Cuisine équipée : lave-vaisselle, four, réfrigérateur, Nespresso</li>
-          <li>Buanderie avec lave-linge et sèche-linge</li>
-          <li>Linge de maison fourni</li>
-          <li>Wi-Fi haut débit Starlink</li>
-          <li>Parking sur la propriété</li>
-          <li>Accès piscine de 13h à 18h, de mai à fin septembre</li>
-        </ul>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 
   <section class="section">
     <p class="section-label">CONFORT</p>
-    <h2>Un cadre pensé pour les familles</h2>
-    <p style="font-size:0.9rem;color:var(--taupe-light);line-height:1.8;">Conçue pour accueillir confortablement une famille, un couple ou un petit groupe de proches, la petite maison est aussi bien adaptée à un week-end qu'à un séjour plus long.</p>
-    <p style="font-size:0.9rem;color:var(--taupe-light);line-height:1.8;margin-top:1rem;">Elle convient particulièrement bien à un couple avec enfants, grâce à la pièce attenante avec deux lits simples, mais peut aussi accueillir d'autres configurations selon vos besoins.</p>
-    <p style="font-size:0.9rem;color:var(--taupe-light);line-height:1.8;margin-top:1rem;">Le salon, avec sa grande table, permet aussi de prévoir quelques jours de télétravail dans un cadre calme et inspirant.</p>
+    <h2><?= htmlspecialchars($data['comfort_heading'] ?? '') ?></h2>
+    <div style="font-size:0.9rem;color:var(--taupe-light);line-height:1.8;">
+      <?= $data['comfort_text'] ?? '' ?>
+    </div>
   </section>
 
   <section class="cta-band">

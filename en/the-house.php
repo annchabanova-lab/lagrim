@@ -1,12 +1,37 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/../content/en/the-house.json'), true) ?: [];
+function img_srcset($lgPath, $prefix = '../') {
+    $sm = str_replace('-lg.', '-sm.', $lgPath);
+    $md = str_replace('-lg.', '-md.', $lgPath);
+    $jpg = preg_replace('/\.webp$/', '.jpg', $lgPath);
+    return '<picture>
+          <source type="image/webp"
+            srcset="' . $prefix . $sm . ' 400w, ' . $prefix . $md . ' 800w, ' . $prefix . $lgPath . ' 1600w"
+            sizes="100vw">
+          <img src="' . $prefix . $jpg . '" alt="" loading="lazy">
+        </picture>';
+}
+function img_srcset_half($lgPath, $prefix = '../') {
+    $sm = str_replace('-lg.', '-sm.', $lgPath);
+    $md = str_replace('-lg.', '-md.', $lgPath);
+    $jpg = preg_replace('/\.webp$/', '.jpg', $lgPath);
+    return '<picture>
+          <source type="image/webp"
+            srcset="' . $prefix . $sm . ' 400w, ' . $prefix . $md . ' 800w, ' . $prefix . $lgPath . ' 1600w"
+            sizes="(max-width: 768px) 100vw, 50vw">
+          <img src="' . $prefix . $jpg . '" alt="" loading="lazy">
+        </picture>';
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nearby — La Grimouillière</title>
-  <meta name="description" content="Explore the Pays d'Auge surroundings: rolling hills, half-timbered manors, local producers and Norman artisans.">
-  <link rel="alternate" hreflang="fr" href="../autour.html">
-  <link rel="alternate" hreflang="en" href="nearby.html">
+  <title>The house — La Grimouillière</title>
+  <meta name="description" content="Discover the little house of La Grimouillière, a world of its own in the heart of Pays d'Auge, Normandy.">
+  <link rel="alternate" hreflang="fr" href="../la-maison.html">
+  <link rel="alternate" hreflang="en" href="the-house.html">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+SC:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -33,9 +58,9 @@
       <a href="./" class="site-logo">La Grimouillière<span>Pays d'Auge · Normandie</span></a>
       <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
       <nav class="main-nav">
-        <a href="the-house.html">The house</a>
+        <a href="the-house.html" class="active">The house</a>
         <a href="bedrooms.html">Bedrooms</a>
-        <a href="nearby.html" class="active">Nearby</a>
+        <a href="nearby.html">Nearby</a>
         <a href="rates.html">Rates</a>
         <a href="contact.html">Contact</a>
         <a href="faq.html">FAQ</a>
@@ -49,60 +74,52 @@
 
   <section class="page-hero">
     <div class="hero-bg">
-        <picture>
-          <source type="image/webp"
-            srcset="../images/lg-extra-vaches-normandie-sm.webp 400w, ../images/lg-extra-vaches-normandie-md.webp 800w, ../images/lg-extra-vaches-normandie-lg.webp 1600w"
-            sizes="100vw">
-          <img src="../images/lg-extra-vaches-normandie.jpg" alt="Norman cows in a Pays d'Auge orchard" loading="lazy">
-        </picture>
+        <?= img_srcset($data['hero_image'] ?? '/images/lg-P04-facade-hortensias-lg.webp') ?>
       </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="section-label">NEARBY</p>
-      <h1>Surroundings</h1>
+      <p class="section-label"><?= htmlspecialchars($data['hero_label'] ?? 'THE HOUSE') ?></p>
+      <h1><?= htmlspecialchars($data['hero_heading'] ?? 'The little house') ?></h1>
     </div>
   </section>
 
   <section class="section">
-    <div class="text-center" style="max-width:700px;margin:0 auto 2rem;">
-      <p>Staying at the little house of La Grimouillière means enjoying a calm and refined setting in the heart of the Pays d'Auge — a land of orchards, hedgerow countryside, villages and local craftsmanship.</p>
-      <p style="margin-top:1rem;">At 2h15 from Paris-Porte Maillot, the property is equally suited to a weekend escape and to a longer stay with family or loved ones.</p>
-    </div>
-    <div class="nearby-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:0 auto;">
-      <div>
-        <p class="section-label">THINGS TO SEE AND DO</p>
-        <ul class="included-list" style="margin-top:1.5rem;">
-          <li>Explore the rolling roads of the Pays d'Auge by bike or on foot</li>
-          <li>Discover the local villages and markets</li>
-          <li>Meet cider producers, Camembert makers and other Normandy specialities</li>
-          <li>Visit the studs, manor houses and small heritage sites of the region</li>
-          <li>Enjoy an in-house massage on request</li>
-        </ul>
+    <div class="intro-grid">
+      <div class="intro-image">
+        <?= img_srcset_half($data['intro_image'] ?? '/images/lg-extra-facade-guirlandes-lg.webp') ?>
       </div>
-      <div>
-        <p class="section-label" style="margin-bottom:1.5rem;">A FEW IDEAS AROUND THE HOUSE</p>
-        <ul class="included-list">
-          <li>Camembert and its terroir</li>
-          <li>Vimoutiers</li>
-          <li>The Haras national du Pin</li>
-          <li>Village markets and local producers</li>
-          <li>The cider routes and Normandy orchards</li>
-        </ul>
+      <div class="intro-text">
+        <h2><?= htmlspecialchars($data['intro_heading'] ?? '') ?></h2>
+        <?= $data['intro_text'] ?? '' ?>
       </div>
     </div>
   </section>
 
-  <section class="section" style="padding-top:20px;">
+  <section class="section">
     <div class="text-center">
-      <p class="section-label">ACCESS</p>
-      <h2>How to get here</h2>
+      <p class="section-label">THE HOUSE IN BRIEF</p>
     </div>
-    <div class="contact-info" style="max-width:500px;margin:2rem auto 0;text-align:center;">
-      <p><strong>Address</strong></p>
-      <p>3 route des Autels Saint-Bazile<br>61200 Crouttes</p>
-      <p style="margin-top:1rem;"><strong>From Paris</strong></p>
-      <p>2h15 from Paris-Porte Maillot by car</p>
-      <p style="margin-top:1rem;"><a href="https://maps.google.com/?q=3+route+des+Autels+Saint-Bazile,+61200+Crouttes,+France" target="_blank" rel="noopener">View on Google Maps</a></p>
+    <div class="nearby-grid" style="margin-top:2rem">
+      <?php foreach (($data['summary'] ?? []) as $card): ?>
+      <div class="nearby-item">
+        <h3><?= htmlspecialchars($card['title'] ?? '') ?></h3>
+        <ul class="included-list">
+          <?php foreach (($card['items'] ?? []) as $item): ?>
+          <li><?= htmlspecialchars($item) ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="text-center">
+      <p class="section-label">COMFORT</p>
+      <h2><?= htmlspecialchars($data['comfort_heading'] ?? '') ?></h2>
+    </div>
+    <div style="font-size:0.9rem;color:var(--taupe-light);line-height:1.8;">
+      <?= $data['comfort_text'] ?? '' ?>
     </div>
   </section>
 
@@ -110,13 +127,12 @@
     <div class="hero-bg">
       <picture>
         <source type="image/webp"
-          srcset="../images/lg-P05-arche-jardin-sm.webp 400w, ../images/lg-P05-arche-jardin-md.webp 800w, ../images/lg-P05-arche-jardin-lg.webp 1600w"
+          srcset="../images/lg-P09-chambre-poutres-voilages-sm.webp 400w, ../images/lg-P09-chambre-poutres-voilages-md.webp 800w, ../images/lg-P09-chambre-poutres-voilages-lg.webp 1600w"
           sizes="100vw">
-        <img src="../images/lg-P05-arche-jardin.jpg" alt="Garden arch at La Grimouillière" loading="lazy">
+        <img src="../images/lg-P09-chambre-poutres-voilages.jpg" alt="Master bedroom" loading="lazy">
       </picture>
     </div>
-    <h2>Ready to book?</h2>
-    <a href="contact.html" class="btn btn-primary">CONTACT US</a>
+    <a href="bedrooms.html" class="btn btn-primary">VIEW BEDROOMS</a>
   </section>
 
   <footer class="site-footer">
@@ -126,7 +142,6 @@
         <p>Seasonal rental — the little house</p>
         <p style="margin-top:0.5rem">3 route des Autels Saint-Bazile<br>61200 Crouttes<br>Pays d'Auge, Normandy</p>
         <p style="margin-top:0.5rem">Up to 6 guests · 2h15 from Paris-Porte Maillot</p>
-        <p style="margin-top:1rem"><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener">@lagrimflow</a></p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>

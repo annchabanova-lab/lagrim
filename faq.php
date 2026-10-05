@@ -1,3 +1,6 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/content/fr/faq.json'), true) ?: [];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -63,46 +66,12 @@
 
   <section class="section">
     <div style="max-width:700px;margin:0 auto;">
+      <?php foreach (($data['items'] ?? []) as $item): ?>
       <div class="nearby-item">
-        <h3>Que loue-t-on à La Grimouillière ?</h3>
-        <p>La location concerne la petite maison — une habitation indépendante avec son propre jardin et sans vis-à-vis — située au sein du domaine de La Grimouillière.</p>
+        <h3><?= htmlspecialchars($item['question'] ?? '') ?></h3>
+        <p><?= htmlspecialchars($item['answer'] ?? '') ?></p>
       </div>
-      <div class="nearby-item">
-        <h3>Combien de voyageurs la maison peut-elle accueillir ?</h3>
-        <p>Jusqu'à 6 voyageurs.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Quels sont les principaux espaces de vie ?</h3>
-        <p>Au rez-de-chaussée, la salle à manger avec cheminée est l'espace de vie commun de la maison. Elle se prolonge par un salon avec une grande table, idéal pour la lecture, les moments partagés et le télétravail.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>La maison est-elle adaptée aux familles ?</h3>
-        <p>Oui — l'agencement est particulièrement pratique pour un couple avec enfants, grâce à la pièce attenante avec deux lits simples à l'étage.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Le boudoir est-il une chambre ?</h3>
-        <p>Le boudoir est situé au rez-de-chaussée. Ce n'est pas une chambre principale, mais un espace flexible avec TV qui peut être utilisé en couchage supplémentaire.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Combien y a-t-il de salles de bain et de WC ?</h3>
-        <p>Une salle de bain à l'étage, plus deux WC entièrement indépendants : un au rez-de-chaussée et un à l'étage.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Peut-on télétravailler depuis la petite maison ?</h3>
-        <p>Oui. La maison bénéficie du Wi-Fi haut débit Starlink sur toute la propriété, et le salon offre une grande table particulièrement adaptée au télétravail.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>La piscine est-elle accessible ?</h3>
-        <p>Oui, la piscine est accessible de 13h à 18h, de mai à fin septembre.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Les animaux sont-ils acceptés ?</h3>
-        <p>Non, les animaux ne sont pas admis.</p>
-      </div>
-      <div class="nearby-item">
-        <h3>Comment vérifier la disponibilité exacte ?</h3>
-        <p>Envoyez-nous un message avec vos dates de séjour souhaitées.</p>
-      </div>
+      <?php endforeach; ?>
     </div>
   </section>
 

@@ -1,3 +1,6 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/content/fr/autour.json'), true) ?: [];
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -63,28 +66,23 @@
 
   <section class="section">
     <div class="text-center" style="max-width:700px;margin:0 auto 2rem;">
-      <p>Séjourner à la petite maison de La Grimouillière, c'est profiter d'un cadre calme et raffiné au cœur du Pays d'Auge — une terre de vergers, de bocage, de villages et de savoir-faire.</p>
-      <p style="margin-top:1rem;">À 2h15 de Paris-Porte Maillot, la propriété convient aussi bien à un week-end qu'à un séjour plus long en famille ou entre proches.</p>
+      <?= $data['intro_text'] ?? '' ?>
     </div>
     <div class="nearby-two-col" style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;max-width:900px;margin:0 auto;">
       <div>
         <p class="section-label">À VOIR ET À FAIRE</p>
         <ul class="included-list" style="margin-top:1.5rem;">
-          <li>Parcourez les routes vallonnées du Pays d'Auge à vélo ou à pied</li>
-          <li>Découvrez les villages, les marchés locaux et le petit patrimoine normand</li>
-          <li>Rencontrez les producteurs de cidre, les fabricants de camembert et les spécialités normandes</li>
-          <li>Visitez les haras, les manoirs et les sites patrimoniaux de la région</li>
-          <li>Massage à domicile sur demande</li>
+          <?php foreach (($data['see_do'] ?? []) as $item): ?>
+          <li><?= htmlspecialchars($item) ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
       <div>
         <p class="section-label" style="margin-bottom:1.5rem;">QUELQUES IDÉES AUTOUR DE LA MAISON</p>
         <ul class="included-list">
-          <li>Camembert et son terroir</li>
-          <li>Vimoutiers</li>
-          <li>Le Haras national du Pin</li>
-          <li>Marchés de village et producteurs locaux</li>
-          <li>Les routes du cidre et les vergers normands</li>
+          <?php foreach (($data['ideas'] ?? []) as $item): ?>
+          <li><?= htmlspecialchars($item) ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
     </div>
@@ -97,9 +95,9 @@
     </div>
     <div class="contact-info" style="max-width:500px;margin:2rem auto 0;text-align:center;">
       <p><strong>Adresse</strong></p>
-      <p>3 route des Autels Saint-Bazile<br>61200 Crouttes</p>
+      <p><?= nl2br(htmlspecialchars($data['access_address'] ?? '')) ?></p>
       <p style="margin-top:1rem;"><strong>Depuis Paris</strong></p>
-      <p>2h15 depuis Paris-Porte Maillot en voiture</p>
+      <p><?= htmlspecialchars($data['access_directions'] ?? '') ?></p>
       <p style="margin-top:1rem;"><a href="https://maps.google.com/?q=3+route+des+Autels+Saint-Bazile,+61200+Crouttes,+France" target="_blank" rel="noopener">Voir sur Google Maps</a></p>
     </div>
   </section>

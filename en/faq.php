@@ -1,12 +1,15 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/../content/en/faq.json'), true) ?: [];
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Legal notice — La Grimouillière</title>
-  <meta name="description" content="Legal notice for lagrimouilliere.fr — SCI Five Stars.">
-  <link rel="alternate" hreflang="fr" href="../mentions-legales.html">
-  <link rel="alternate" hreflang="en" href="legal.html">
+  <title>FAQ — La Grimouillière</title>
+  <meta name="description" content="Frequently asked questions about the little house at La Grimouillière: capacity, amenities, families, remote working, pool and availability.">
+  <link rel="alternate" hreflang="fr" href="../faq.html">
+  <link rel="alternate" hreflang="en" href="faq.html">
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Cormorant+SC:wght@400;500&family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css">
   <link rel="stylesheet" href="../css/responsive.css">
@@ -38,7 +41,7 @@
         <a href="nearby.html">Nearby</a>
         <a href="rates.html">Rates</a>
         <a href="contact.html">Contact</a>
-        <a href="faq.html">FAQ</a>
+        <a href="faq.html" class="active">FAQ</a>
       </nav>
       <div class="header-actions">
         <div class="lang-switch"><a href="../" data-lang="fr">FR</a> / <a href="./" data-lang="en" class="active">EN</a></div>
@@ -48,40 +51,42 @@
   </header>
 
   <section class="page-hero">
-    <div class="hero-bg">
-        <picture>
-          <source type="image/webp"
-            srcset="../images/lg-P04-facade-hortensias-sm.webp 400w, ../images/lg-P04-facade-hortensias-md.webp 800w, ../images/lg-P04-facade-hortensias-lg.webp 1600w"
-            sizes="100vw">
-          <img src="../images/lg-P04-facade-hortensias.jpg" alt="La Grimouillière" loading="lazy">
-        </picture>
-      </div>
+    <div class="hero-bg"><picture>
+      <source type="image/webp"
+        srcset="../images/lg-P13-facade-jour-banc-sm.webp 400w, ../images/lg-P13-facade-jour-banc-md.webp 800w, ../images/lg-P13-facade-jour-banc-lg.webp 1600w"
+        sizes="100vw">
+      <img src="../images/lg-P13-facade-jour-banc.jpg" alt="La Grimouillière" loading="lazy">
+    </picture></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <p class="section-label">LEGAL NOTICE</p>
-      <h1>Legal notice</h1>
+      <p class="section-label">FAQ</p>
+      <h1>Frequently asked questions</h1>
     </div>
   </section>
 
   <section class="section">
-    <div class="legal-content">
-      <h2>Site publisher</h2>
-      <p>SCI Five Stars<br>3 route des Autels Saint-Bazile<br>61200 Crouttes<br>France</p>
+    <div style="max-width:700px;margin:0 auto;">
+      <?php foreach (($data['items'] ?? []) as $item): ?>
+      <div class="nearby-item">
+        <h3><?= htmlspecialchars($item['question'] ?? '') ?></h3>
+        <p><?= htmlspecialchars($item['answer'] ?? '') ?></p>
+      </div>
+      <?php endforeach; ?>
+    </div>
+  </section>
 
-      <h2>Hosting</h2>
-      <p>OVH SAS<br>2 rue Kellermann<br>59100 Roubaix<br>France</p>
-
-      <h2>Intellectual property</h2>
-      <p>All content on this website (texts, photographs, illustrations, graphic elements) is the property of SCI Five Stars. Any reproduction, even partial, is prohibited without prior written consent.</p>
-
-      <h2>Personal data</h2>
-      <p>The information submitted through the contact form is used only to reply to your enquiry or booking request. It is not shared with or sold to third parties. In accordance with applicable regulations, you have the right to access, rectify and delete your personal data.</p>
-
-      <h2>Cookies</h2>
-      <p>This website uses Matomo in anonymised mode for audience measurement and to improve the browsing experience. No advertising cookies are used.</p>
-
-      <h2>Tourism registration</h2>
-      <p>Registration with Crouttes town hall pending.</p>
+  <section class="cta-band">
+    <div class="hero-bg"><picture>
+      <source type="image/webp"
+        srcset="../images/lg-P06-maison-nuit-sm.webp 400w, ../images/lg-P06-maison-nuit-md.webp 800w, ../images/lg-P06-maison-nuit-lg.webp 1600w"
+        sizes="100vw">
+      <img src="../images/lg-P06-maison-nuit.jpg" alt="La Grimouillière at night" loading="lazy">
+    </picture></div>
+    <div class="hero-overlay"></div>
+    <div class="cta-band-content">
+      <h2>Any questions?</h2>
+      <p>Don't hesitate to get in touch.</p>
+      <a href="contact.html" class="btn btn-primary">CONTACT US</a>
     </div>
   </section>
 
@@ -120,6 +125,5 @@
 
   <script src="../js/main.js"></script>
   <script src="../js/lang-switcher.js"></script>
-  <script src="../js/lightbox.js"></script>
 </body>
 </html>

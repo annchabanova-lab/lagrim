@@ -1,3 +1,13 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/../content/en/homepage.json'), true) ?: [];
+$hero = $data['hero'] ?? [];
+$intro = $data['intro'] ?? [];
+$glance = $data['glance'] ?? [];
+$why = $data['why'] ?? [];
+$cta = $data['cta'] ?? [];
+$heroImg = '../' . ($hero['image'] ?? 'images/lg-P06-maison-nuit');
+$introImg = '../' . ($intro['image'] ?? 'images/lg-P03-facade-clematis');
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,18 +78,18 @@
         <div class="hero-bg">
             <picture>
                 <source type="image/webp"
-                    srcset="../images/lg-P06-maison-nuit-sm.webp 400w, ../images/lg-P06-maison-nuit-md.webp 800w, ../images/lg-P06-maison-nuit-lg.webp 1600w"
+                    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
                     sizes="100vw">
-                <img src="../images/lg-P06-maison-nuit.jpg" alt="La Grimouillière at night, illuminated half-timbered house">
+                <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="La Grimouillière at night, illuminated half-timbered house">
             </picture>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-surtitre">WELCOME</p>
-            <h1>La Grimouillière</h1>
-            <p class="hero-location">THE LITTLE HOUSE — SEASONAL RENTAL</p>
-            <p class="hero-tagline">Pays d'Auge · Normandy<br>Up to 6 guests · from €250 / night<br>2h15 from Paris-Porte Maillot</p>
-            <a href="contact.html" class="btn btn-primary">BOOK NOW</a>
+            <p class="hero-surtitre"><?= htmlspecialchars($hero['label'] ?? 'WELCOME') ?></p>
+            <h1><?= htmlspecialchars($hero['heading'] ?? 'La Grimouillière') ?></h1>
+            <p class="hero-location"><?= htmlspecialchars($hero['subheading'] ?? '') ?></p>
+            <p class="hero-tagline"><?= nl2br(htmlspecialchars($hero['tagline'] ?? '')) ?></p>
+            <a href="contact.html" class="btn btn-primary"><?= htmlspecialchars($hero['cta_text'] ?? 'BOOK NOW') ?></a>
         </div>
     </section>
 
@@ -90,16 +100,16 @@
             <div class="intro-image">
                 <picture>
                     <source type="image/webp"
-                        srcset="../images/lg-P03-facade-clematis-sm.webp 400w, ../images/lg-P03-facade-clematis-md.webp 800w, ../images/lg-P03-facade-clematis-lg.webp 1600w"
+                        srcset="<?= htmlspecialchars($introImg) ?>-sm.webp 400w, <?= htmlspecialchars($introImg) ?>-md.webp 800w, <?= htmlspecialchars($introImg) ?>-lg.webp 1600w"
                         sizes="(max-width: 768px) 100vw, 50vw">
-                    <img src="../images/lg-P03-facade-clematis.jpg" alt="La Grimouillière facade with clematis" loading="lazy">
+                    <img src="<?= htmlspecialchars($introImg) ?>.jpg" alt="La Grimouillière facade with clematis" loading="lazy">
                 </picture>
             </div>
             <div class="intro-text">
                 <blockquote>
-                    Set within the grounds of La Grimouillière, the little house is a 17th-century former residential home, fully renovated and now available as a seasonal rental. Independent, with its own garden and no facing view, it welcomes up to 6 guests in a calm, elegant and welcoming setting. On the ground floor, the dining room and its fireplace are the heart of the house, extended by a living room with a large table — ideal for reading, spending time together or remote working. A boudoir with TV can also serve as an additional sleeping room. Upstairs, two true bedrooms under the beams, one of them with an adjoining room featuring two single beds, particularly well suited to a couple travelling with children.
+                    <?= $intro['text'] ?? '' ?>
                 </blockquote>
-                <a href="the-house.html" class="btn btn-outline">DISCOVER THE HOUSE</a>
+                <a href="the-house.html" class="btn btn-outline"><?= htmlspecialchars($intro['cta_text'] ?? 'DISCOVER THE HOUSE') ?></a>
             </div>
         </div>
     </section>
@@ -110,40 +120,16 @@
             <p class="section-label">AT A GLANCE</p>
         </div>
         <div class="nearby-grid" style="margin-top:2rem">
+            <?php foreach ($glance as $card): ?>
             <div class="nearby-item">
-                <h3>Living spaces</h3>
+                <h3><?= htmlspecialchars($card['title'] ?? '') ?></h3>
                 <ul class="included-list">
-                    <li>Dining room with fireplace</li>
-                    <li>Living room with a large table, ideal for reading or remote working</li>
-                    <li>Boudoir with TV on the ground floor, usable as an additional sleeping room</li>
+                    <?php foreach (($card['items'] ?? []) as $item): ?>
+                    <li><?= htmlspecialchars($item) ?></li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
-            <div class="nearby-item">
-                <h3>Sleeping areas</h3>
-                <ul class="included-list">
-                    <li>Two true bedrooms upstairs</li>
-                    <li>An adjoining room with two single beds</li>
-                    <li>Up to 6 guests</li>
-                </ul>
-            </div>
-            <div class="nearby-item">
-                <h3>Comfort</h3>
-                <ul class="included-list">
-                    <li>High-speed Starlink Wi-Fi</li>
-                    <li>Household linen provided</li>
-                    <li>Fully equipped kitchen</li>
-                    <li>Laundry room</li>
-                    <li>Parking on the property</li>
-                </ul>
-            </div>
-            <div class="nearby-item">
-                <h3>Outdoors</h3>
-                <ul class="included-list">
-                    <li>Private garden with no facing view</li>
-                    <li>Pool access from 1pm to 6pm, May to end of September</li>
-                    <li>2h15 from Paris-Porte Maillot</li>
-                </ul>
-            </div>
+            <?php endforeach; ?>
         </div>
     </section>
 
@@ -154,13 +140,9 @@
           <p class="section-label">WHY THE LITTLE HOUSE</p>
         </div>
         <ul class="included-list" style="max-width:600px;margin:2rem auto 0;">
-          <li>An independent house with its own garden and no facing view</li>
-          <li>A warm dining room with a fireplace</li>
-          <li>A spacious living room, perfect for reading and remote working</li>
-          <li>Two beautiful bedrooms upstairs, under the beams</li>
-          <li>A ground-floor boudoir with TV for added flexibility</li>
-          <li>A layout particularly designed for families</li>
-          <li>An ideal base to discover the Pays d'Auge</li>
+          <?php foreach ($why as $reason): ?>
+          <li><?= htmlspecialchars($reason) ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
     </section>
@@ -178,8 +160,8 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="cta-band-content">
-            <h2>Book the little house</h2>
-            <p>Contact us to check availability and book your stay.</p>
+            <h2><?= htmlspecialchars($cta['heading'] ?? 'Book the little house') ?></h2>
+            <p><?= htmlspecialchars($cta['text'] ?? '') ?></p>
             <a href="contact.html" class="btn btn-primary">CONTACT US</a>
         </div>
     </section>

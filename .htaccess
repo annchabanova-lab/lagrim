@@ -16,7 +16,13 @@ RewriteCond %{HTTP_HOST} ^www\.lagrimouilliere\.fr$ [NC]
 RewriteRule ^(.*)$ https://lagrimouilliere.fr/$1 [L,R=301]
 
 # Serve PHP files for dynamic pages (URLs stay .html)
+RewriteRule ^la-maison\.html$ la-maison.php [L]
+RewriteRule ^chambres\.html$ chambres.php [L]
+RewriteRule ^autour\.html$ autour.php [L]
 RewriteRule ^tarifs\.html$ tarifs.php [L]
+RewriteRule ^contact\.html$ contact.php [L]
+RewriteRule ^faq\.html$ faq.php [L]
+RewriteRule ^mentions-legales\.html$ mentions-legales.php [L]
 
 # Gzip compression
 <IfModule mod_deflate.c>

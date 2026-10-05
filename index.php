@@ -1,3 +1,13 @@
+<?php
+$data = json_decode(file_get_contents(__DIR__ . '/content/fr/homepage.json'), true) ?: [];
+$hero = $data['hero'] ?? [];
+$intro = $data['intro'] ?? [];
+$glance = $data['glance'] ?? [];
+$why = $data['why'] ?? [];
+$cta = $data['cta'] ?? [];
+$heroImg = $hero['image'] ?? 'images/lg-P06-maison-nuit';
+$introImg = $intro['image'] ?? 'images/lg-P03-facade-clematis';
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -68,18 +78,18 @@
         <div class="hero-bg">
             <picture>
                 <source type="image/webp"
-                    srcset="images/lg-P06-maison-nuit-sm.webp 400w, images/lg-P06-maison-nuit-md.webp 800w, images/lg-P06-maison-nuit-lg.webp 1600w"
+                    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
                     sizes="100vw">
-                <img src="images/lg-P06-maison-nuit.jpg" alt="La Grimouillière de nuit, maison à colombages illuminée" width="1600" height="900">
+                <img src="<?= htmlspecialchars(preg_replace('/^(images\/[^\/]+)$/', '$1.jpg', $heroImg)) ?>.jpg" alt="La Grimouillière de nuit, maison à colombages illuminée" width="1600" height="900">
             </picture>
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <p class="hero-surtitre">BIENVENUE</p>
-            <h1>La Grimouillière</h1>
-            <p class="hero-location">LA PETITE MAISON — LOCATION SAISONNIÈRE</p>
-            <p class="hero-tagline">Pays d'Auge · Normandie<br>Jusqu'à 6 voyageurs · à partir de 250 € / nuit<br>2h15 de Paris-Porte Maillot</p>
-            <a href="contact.html" class="btn btn-primary">RÉSERVER</a>
+            <p class="hero-surtitre"><?= htmlspecialchars($hero['label'] ?? 'BIENVENUE') ?></p>
+            <h1><?= htmlspecialchars($hero['heading'] ?? 'La Grimouillière') ?></h1>
+            <p class="hero-location"><?= htmlspecialchars($hero['subheading'] ?? '') ?></p>
+            <p class="hero-tagline"><?= nl2br(htmlspecialchars($hero['tagline'] ?? '')) ?></p>
+            <a href="contact.html" class="btn btn-primary"><?= htmlspecialchars($hero['cta_text'] ?? 'RÉSERVER') ?></a>
         </div>
     </section>
 
@@ -90,16 +100,16 @@
             <div class="intro-image">
                 <picture>
                     <source type="image/webp"
-                        srcset="images/lg-P03-facade-clematis-sm.webp 400w, images/lg-P03-facade-clematis-md.webp 800w, images/lg-P03-facade-clematis-lg.webp 1600w"
+                        srcset="<?= htmlspecialchars($introImg) ?>-sm.webp 400w, <?= htmlspecialchars($introImg) ?>-md.webp 800w, <?= htmlspecialchars($introImg) ?>-lg.webp 1600w"
                         sizes="(max-width: 768px) 100vw, 50vw">
-                    <img src="images/lg-P03-facade-clematis.jpg" alt="Façade de La Grimouillière avec clématite" loading="lazy" width="800" height="1000">
+                    <img src="<?= htmlspecialchars($introImg) ?>.jpg" alt="Façade de La Grimouillière avec clématite" loading="lazy" width="800" height="1000">
                 </picture>
             </div>
             <div class="intro-text">
                 <blockquote>
-                    Au sein du domaine de La Grimouillière, la petite maison est une ancienne habitation du XVIIe siècle, entièrement rénovée et aujourd'hui proposée en location saisonnière. Indépendante, avec son propre jardin et sans vis-à-vis, elle accueille jusqu'à 6 voyageurs dans un cadre calme, élégant et chaleureux. Au rez-de-chaussée, la salle à manger et sa cheminée sont le cœur de la maison, prolongé par un salon avec une grande table — idéal pour la lecture, les moments partagés ou le télétravail. Un boudoir avec TV peut également servir de couchage supplémentaire. À l'étage, deux vraies chambres sous les poutres, dont l'une communique avec une pièce attenante équipée de deux lits simples, particulièrement adaptée aux familles.
+                    <?= $intro['text'] ?? '' ?>
                 </blockquote>
-                <a href="la-maison.html" class="btn btn-outline">DÉCOUVRIR LA MAISON</a>
+                <a href="la-maison.html" class="btn btn-outline"><?= htmlspecialchars($intro['cta_text'] ?? 'DÉCOUVRIR LA MAISON') ?></a>
             </div>
         </div>
     </section>
@@ -110,40 +120,16 @@
         <p class="section-label">EN UN COUP D'ŒIL</p>
       </div>
       <div class="nearby-grid" style="margin-top:2rem">
+        <?php foreach ($glance as $card): ?>
         <div class="nearby-item">
-          <h3>Espaces de vie</h3>
+          <h3><?= htmlspecialchars($card['title'] ?? '') ?></h3>
           <ul class="included-list">
-            <li>Salle à manger avec cheminée</li>
-            <li>Salon avec grande table, idéal pour la lecture ou le télétravail</li>
-            <li>Boudoir avec TV au rez-de-chaussée, utilisable en couchage supplémentaire</li>
+            <?php foreach (($card['items'] ?? []) as $item): ?>
+            <li><?= htmlspecialchars($item) ?></li>
+            <?php endforeach; ?>
           </ul>
         </div>
-        <div class="nearby-item">
-          <h3>Couchages</h3>
-          <ul class="included-list">
-            <li>Deux vraies chambres à l'étage</li>
-            <li>Une pièce attenante avec deux lits simples</li>
-            <li>Jusqu'à 6 voyageurs</li>
-          </ul>
-        </div>
-        <div class="nearby-item">
-          <h3>Confort</h3>
-          <ul class="included-list">
-            <li>Wi-Fi haut débit Starlink</li>
-            <li>Linge de maison fourni</li>
-            <li>Cuisine entièrement équipée</li>
-            <li>Buanderie</li>
-            <li>Parking sur la propriété</li>
-          </ul>
-        </div>
-        <div class="nearby-item">
-          <h3>Extérieurs</h3>
-          <ul class="included-list">
-            <li>Jardin privatif sans vis-à-vis</li>
-            <li>Accès piscine de 13h à 18h, de mai à fin septembre</li>
-            <li>2h15 de Paris-Porte Maillot</li>
-          </ul>
-        </div>
+        <?php endforeach; ?>
       </div>
     </section>
 
@@ -154,13 +140,9 @@
           <p class="section-label">POURQUOI LA PETITE MAISON</p>
         </div>
         <ul class="included-list" style="max-width:600px;margin:2rem auto 0;">
-          <li>Une maison indépendante avec son propre jardin et sans vis-à-vis</li>
-          <li>Une salle à manger chaleureuse avec cheminée</li>
-          <li>Un salon spacieux, idéal pour la lecture et le télétravail</li>
-          <li>Deux belles chambres à l'étage, sous les poutres</li>
-          <li>Un boudoir avec TV au rez-de-chaussée pour plus de flexibilité</li>
-          <li>Un agencement particulièrement pensé pour les familles</li>
-          <li>Un point de départ idéal pour découvrir le Pays d'Auge</li>
+          <?php foreach ($why as $reason): ?>
+          <li><?= htmlspecialchars($reason) ?></li>
+          <?php endforeach; ?>
         </ul>
       </div>
     </section>
@@ -178,8 +160,8 @@
         </div>
         <div class="hero-overlay"></div>
         <div class="cta-band-content">
-            <h2>Réservez la petite maison</h2>
-            <p>Contactez-nous pour vérifier la disponibilité et réserver votre séjour.</p>
+            <h2><?= htmlspecialchars($cta['heading'] ?? 'Réservez la petite maison') ?></h2>
+            <p><?= htmlspecialchars($cta['text'] ?? '') ?></p>
             <a href="contact.html" class="btn btn-primary">NOUS CONTACTER</a>
         </div>
     </section>
