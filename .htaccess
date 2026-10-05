@@ -1,6 +1,3 @@
-# Parse .html files as PHP
-AddType application/x-httpd-php .html
-
 RewriteEngine On
 
 # Force HTTPS
@@ -17,6 +14,9 @@ RewriteRule ^(.*)$ https://lagrimouilliere.fr/$1 [L,R=301]
 # Redirect www to non-www
 RewriteCond %{HTTP_HOST} ^www\.lagrimouilliere\.fr$ [NC]
 RewriteRule ^(.*)$ https://lagrimouilliere.fr/$1 [L,R=301]
+
+# Serve PHP files for dynamic pages (URLs stay .html)
+RewriteRule ^tarifs\.html$ tarifs.php [L]
 
 # Gzip compression
 <IfModule mod_deflate.c>

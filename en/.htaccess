@@ -1,1 +1,2 @@
-AddType application/x-httpd-php .html
+RewriteEngine On
+RewriteRule ^rates\.html$ rates.php [L]
