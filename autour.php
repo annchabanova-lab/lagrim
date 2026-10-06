@@ -1,5 +1,8 @@
 <?php
 $data = json_decode(file_get_contents(__DIR__ . '/content/fr/autour.json'), true) ?: [];
+$heroImg = $data['hero_image'] ?? 'images/lg-extra-vaches-normandie';
+$heroHeading = $data['hero_heading'] ?? 'Autour de la maison';
+$ctaImg = $data['cta_image'] ?? 'images/lg-P05-arche-jardin';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,9 +56,9 @@ $data = json_decode(file_get_contents(__DIR__ . '/content/fr/autour.json'), true
   <section class="page-hero">
     <div class="hero-bg"><picture>
   <source type="image/webp"
-    srcset="images/lg-extra-vaches-normandie-sm.webp 400w, images/lg-extra-vaches-normandie-md.webp 800w, images/lg-extra-vaches-normandie-lg.webp 1600w"
+    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
     sizes="100vw">
-  <img src="images/lg-extra-vaches-normandie.jpg" alt="Vaches normandes dans un verger du Pays d'Auge" loading="lazy">
+  <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="Autour de La Grimouillière" loading="lazy">
 </picture></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
