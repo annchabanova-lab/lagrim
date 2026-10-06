@@ -4,6 +4,7 @@ $avail = json_decode(file_get_contents(__DIR__ . '/../content/availability.json'
 $statusLabels = ['available' => 'Available', 'booked' => 'Fully booked', 'on_request' => 'On request'];
 $heroImg = $rates['hero_image'] ?? 'images/lg-P13-facade-jour-banc';
 $heroHeading = $rates['hero_heading'] ?? 'Rates & availability';
+$footer = json_decode(file_get_contents(__DIR__ . '/../content/en/footer.json'), true) ?: [];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -138,11 +139,11 @@ $heroHeading = $rates['hero_heading'] ?? 'Rates & availability';
   <footer class="site-footer">
     <div class="footer-inner">
       <div class="footer-col">
-        <h4>La Grimouillière</h4>
-        <p>Seasonal rental — the little house</p>
-        <p style="margin-top:0.5rem">3 route des Autels Saint-Bazile<br>61200 Crouttes<br>Pays d'Auge, Normandy</p>
-        <p style="margin-top:0.5rem">Up to 6 guests · 2h15 from Paris-Porte Maillot</p>
-        <p style="margin-top:1rem"><a href="https://www.instagram.com/lagrimflow" target="_blank" rel="noopener">@lagrimflow</a></p>
+        <h4><?= htmlspecialchars($footer['title'] ?? 'LA GRIMOUILLIÈRE') ?></h4>
+        <p><?= htmlspecialchars($footer['description'] ?? '') ?></p>
+        <p style="margin-top:0.5rem"><?= nl2br(htmlspecialchars($footer['address'] ?? '')) ?></p>
+        <p style="margin-top:0.5rem"><?= htmlspecialchars($footer['capacity'] ?? '') ?></p>
+        <p style="margin-top:1rem"><a href="<?= htmlspecialchars($footer['instagram_url'] ?? '') ?>" target="_blank" rel="noopener"><?= htmlspecialchars($footer['instagram'] ?? '') ?></a></p>
       </div>
       <div class="footer-col">
         <h4>Navigation</h4>
@@ -156,15 +157,15 @@ $heroHeading = $rates['hero_heading'] ?? 'Rates & availability';
         </ul>
       </div>
       <div class="footer-col">
-        <h4>Information</h4>
-        <p>Check-in: 4 pm</p>
-        <p>Check-out: 11 am</p>
-        <p style="margin-top:1rem"><a href="contact.html">Cancellation policy</a></p>
+        <h4><?= htmlspecialchars($footer['info_title'] ?? 'INFORMATION') ?></h4>
+        <p><?= htmlspecialchars($footer['checkin'] ?? '') ?></p>
+        <p><?= htmlspecialchars($footer['checkout'] ?? '') ?></p>
+        <p style="margin-top:1rem"><a href="contact.html"><?= htmlspecialchars($footer['cancellation_text'] ?? '') ?></a></p>
       </div>
     </div>
     <div class="footer-bottom">
-      <span>&copy; 2026 SCI Five Stars — La Grimouillière</span>
-      <a href="legal.html">Legal notice</a>
+      <span><?= htmlspecialchars($footer['copyright'] ?? '') ?></span>
+      <a href="legal.html"><?= htmlspecialchars($footer['legal_text'] ?? 'Legal notice') ?></a>
     </div>
   </footer>
 

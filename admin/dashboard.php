@@ -182,6 +182,12 @@ require_login();
       <p>Informations juridiques</p>
       <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
     </a>
+    <a href="edit-footer.php" class="page-card">
+      <div class="icon">🦶</div>
+      <h3>Pied de page / Footer</h3>
+      <p>Adresse, horaires, copyright</p>
+      <span class="badge badge-fr">FR</span> <span class="badge badge-en">EN</span>
+    </a>
   </div>
 </div>
 </body>
