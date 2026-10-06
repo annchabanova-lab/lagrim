@@ -52,7 +52,7 @@ $max_rooms = max(count($fr_rooms), count($en_rooms));
   .btn-remove-room { position: absolute; top: 0.75rem; right: 0.75rem; }
   .btn-add { background: none; border: 1px dashed var(--sauge); color: var(--sauge-dark); padding: 8px 16px; border-radius: 6px; cursor: pointer; font-family: 'Poppins', sans-serif; font-size: 0.8rem; margin-top: 0.5rem; }
   .btn-add:hover { background: #f0f5ed; }
-  .btn-save { background: var(--tuile); color: white; border: none; padding: 14px 40px; border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; letter-spacing: 1px; display: block; width: 100%; margin-top: 1rem; }
+  .btn-save { background: var(--tuile); color: white; border: none; padding: 14px 40px; border-radius: 6px; font-family: 'Poppins', sans-serif; font-size: 0.9rem; font-weight: 500; cursor: pointer; letter-spacing: 1px; display: block; width: 100%; margin-top: 2rem; position: relative; z-index: 50; }
   .btn-save:hover { opacity: 0.9; }
   .toast { position: fixed; bottom: 2rem; right: 2rem; background: var(--sauge-dark); color: white; padding: 12px 24px; border-radius: 8px; font-size: 0.85rem; box-shadow: 0 4px 12px rgba(0,0,0,0.15); animation: fadeIn 0.3s ease; }
   @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
