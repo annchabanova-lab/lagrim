@@ -266,41 +266,12 @@ function addRoom() {
 <script>
 function initRoomImageUpload(el) {
   const nameFr = el.dataset.nameFr;
-  const nameEn = el.dataset.nameEn;
   const value = el.dataset.value || '';
   createImageUpload(el, {
     name: nameFr,
     value: value,
     label: 'Image chambre / Room image'
   });
-  // Add a hidden input that syncs the EN image to the same value
-  const form = document.getElementById('chambres-form') || el.closest('form');
-  if (form) {
-    const observer = new MutationObserver(function() {
-      const frInput = el.querySelector('input[name="' + nameFr + '"]');
-      let enInput = el.querySelector('input[name="' + nameEn + '"]');
-      if (frInput && !enInput) {
-        enInput = document.createElement('input');
-        enInput.type = 'hidden';
-        enInput.name = nameEn;
-        el.appendChild(enInput);
-      }
-      if (frInput && enInput) enInput.value = frInput.value;
-    });
-    observer.observe(el, { childList: true, subtree: true, attributes: true });
-    // Also sync on form submit
-    form.addEventListener('submit', function() {
-      const frInput = el.querySelector('input[name="' + nameFr + '"]');
-      let enInput = el.querySelector('input[name="' + nameEn + '"]');
-      if (frInput && !enInput) {
-        enInput = document.createElement('input');
-        enInput.type = 'hidden';
-        enInput.name = nameEn;
-        el.appendChild(enInput);
-      }
-      if (frInput && enInput) enInput.value = frInput.value;
-    });
-  }
 }
 
 // Initialize all existing room image uploads
