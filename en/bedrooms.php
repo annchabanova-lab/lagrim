@@ -1,15 +1,22 @@
 <?php
 $data = json_decode(file_get_contents(__DIR__ . '/../content/en/bedrooms.json'), true) ?: [];
 $rooms = $data['rooms'] ?? [];
-function img_srcset_room($lgPath, $sizes = '(max-width: 768px) 100vw, 50vw') {
-    $sm = str_replace('-lg.', '-sm.', $lgPath);
-    $md = str_replace('-lg.', '-md.', $lgPath);
-    $jpg = preg_replace('/\.webp$/', '.jpg', $lgPath);
+$heroImg = $data['hero_image'] ?? 'images/lg-extra-chambre-large';
+$heroHeading = $data['hero_heading'] ?? 'Bedrooms';
+$ctaImg = $data['cta_image'] ?? 'images/lg-P13-facade-jour-banc';
+function img_base($path) {
+    $path = ltrim($path, '/');
+    $path = preg_replace('/-(sm|md|lg)\.(webp|jpg|jpeg|png)$/i', '', $path);
+    $path = preg_replace('/\.(webp|jpg|jpeg|png)$/i', '', $path);
+    return $path;
+}
+function img_srcset_room($path, $sizes = '(max-width: 768px) 100vw, 50vw') {
+    $base = img_base($path);
     return '<picture>
             <source type="image/webp"
-              srcset="../' . $sm . ' 400w, ../' . $md . ' 800w, ../' . $lgPath . ' 1600w"
+              srcset="../' . htmlspecialchars($base) . '-sm.webp 400w, ../' . htmlspecialchars($base) . '-md.webp 800w, ../' . htmlspecialchars($base) . '-lg.webp 1600w"
               sizes="' . $sizes . '">
-            <img src="../' . $jpg . '" alt="" loading="lazy">
+            <img src="../' . htmlspecialchars($base) . '.jpg" alt="" loading="lazy">
           </picture>';
 }
 ?>
@@ -64,10 +71,7 @@ function img_srcset_room($lgPath, $sizes = '(max-width: 768px) 100vw, 50vw') {
 
   <section class="page-hero">
     <div class="hero-bg">
-        <?php
-        $heroImg = $rooms[0]['image'] ?? '/images/lg-P09-chambre-poutres-voilages-lg.webp';
-        echo img_srcset_room($heroImg, '100vw');
-        ?>
+        <?= img_srcset_room($heroImg, '100vw') ?>
       </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
