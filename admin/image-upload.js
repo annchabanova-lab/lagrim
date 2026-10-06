@@ -64,9 +64,10 @@ function createImageUpload(container, opts) {
     formData.append('image', file);
     formData.append('current', hiddenInput.value);
     formData.append('field', opts.name);
-    const form = zone.closest('form');
-    const csrfInput = form && form.querySelector('input[name="csrf_token"]');
-    if (csrfInput) formData.append('csrf_token', csrfInput.value);
+    const csrfInput = document.querySelector('input[name="csrf_token"]');
+    if (csrfInput && csrfInput.value) {
+      formData.append('csrf_token', csrfInput.value);
+    }
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', 'upload.php', true);
