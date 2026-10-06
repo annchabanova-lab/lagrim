@@ -140,23 +140,23 @@ function createImageUpload(container, opts) {
   const style = document.createElement('style');
   style.id = 'img-upload-styles';
   style.textContent = `
-    .img-upload { margin-bottom: 1rem; }
+    .img-upload { margin-bottom: 1rem; position: relative; overflow: hidden; }
     .img-upload-label {
       display: block; font-size: 0.75rem; font-weight: 500;
       margin-bottom: 0.3rem; color: #6B5F55;
     }
     .img-upload-zone {
       border: 2px dashed #ddd; border-radius: 8px;
-      padding: 1rem; text-align: center; cursor: pointer;
+      padding: 1rem; text-align: center;
       transition: border-color 0.2s, background 0.2s;
-      position: relative; min-height: 120px;
+      position: relative; min-height: 80px;
       display: flex; align-items: center; justify-content: center;
-      flex-direction: column;
+      flex-direction: column; overflow: hidden;
     }
     .img-upload-zone.img-upload-dragover {
       border-color: #92A17F; background: #f0f5ed;
     }
-    .img-upload-placeholder { cursor: pointer; padding: 1rem; }
+    .img-upload-placeholder { cursor: pointer; padding: 1rem; position: relative; z-index: 1; }
     .img-upload-icon { font-size: 2rem; margin-bottom: 0.5rem; }
     .img-upload-placeholder p {
       font-size: 0.85rem; color: #6B5F55; margin: 0.2rem 0;

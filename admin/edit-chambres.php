@@ -206,9 +206,7 @@ $max_rooms = max(count($fr_rooms), count($en_rooms));
       <div id="cta-image-upload"></div>
     </div>
 
-    <div style="clear:both; padding-top:2rem; position:relative; z-index:999;">
-      <button type="submit" class="btn-save" onclick="document.getElementById('fr-intro-input').value=document.querySelector('#intro-editor-fr .ql-editor').innerHTML;document.getElementById('en-intro-input').value=document.querySelector('#intro-editor-en .ql-editor').innerHTML;">ENREGISTRER / SAVE</button>
-    </div>
+    <button type="submit" class="btn-save" style="position:relative; z-index:999; margin-top:2rem;">ENREGISTRER / SAVE</button>
   </form>
 </div>
 
