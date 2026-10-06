@@ -2,6 +2,8 @@
 $tarifs = json_decode(file_get_contents(__DIR__ . '/content/fr/tarifs.json'), true) ?: [];
 $avail = json_decode(file_get_contents(__DIR__ . '/content/availability.json'), true) ?: [];
 $statusLabels = ['available' => 'Disponible', 'booked' => 'Complet', 'on_request' => 'Sur demande'];
+$heroImg = $tarifs['hero_image'] ?? 'images/lg-P13-facade-jour-banc';
+$heroHeading = $tarifs['hero_heading'] ?? 'Tarifs & disponibilités';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -55,14 +57,14 @@ $statusLabels = ['available' => 'Disponible', 'booked' => 'Complet', 'on_request
   <section class="page-hero">
     <div class="hero-bg"><picture>
   <source type="image/webp"
-    srcset="images/lg-P13-facade-jour-banc-sm.webp 400w, images/lg-P13-facade-jour-banc-md.webp 800w, images/lg-P13-facade-jour-banc-lg.webp 1600w"
+    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
     sizes="100vw">
-  <img src="images/lg-P13-facade-jour-banc.jpg" alt="La Grimouillière vue du jardin" loading="lazy">
+  <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="La Grimouillière vue du jardin" loading="lazy">
 </picture></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="section-label">TARIFS</p>
-      <h1>Tarifs &amp; disponibilités</h1>
+      <h1><?= htmlspecialchars($heroHeading) ?></h1>
     </div>
   </section>
 

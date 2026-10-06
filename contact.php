@@ -1,5 +1,6 @@
 <?php
 $data = json_decode(file_get_contents(__DIR__ . '/content/fr/contact.json'), true) ?: [];
+$heroImg = $data['hero_image'] ?? 'images/lg-P03-facade-clematis';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,9 +54,9 @@ $data = json_decode(file_get_contents(__DIR__ . '/content/fr/contact.json'), tru
   <section class="page-hero">
     <div class="hero-bg"><picture>
   <source type="image/webp"
-    srcset="images/lg-P03-facade-clematis-sm.webp 400w, images/lg-P03-facade-clematis-md.webp 800w, images/lg-P03-facade-clematis-lg.webp 1600w"
+    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
     sizes="100vw">
-  <img src="images/lg-P03-facade-clematis.jpg" alt="Façade de La Grimouillière" loading="lazy">
+  <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="Façade de La Grimouillière" loading="lazy">
 </picture></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">

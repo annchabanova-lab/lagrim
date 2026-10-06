@@ -1,5 +1,6 @@
 <?php
 $data = json_decode(file_get_contents(__DIR__ . '/content/fr/mentions-legales.json'), true) ?: [];
+$heroImg = $data['hero_image'] ?? 'images/lg-P04-facade-hortensias';
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -53,9 +54,9 @@ $data = json_decode(file_get_contents(__DIR__ . '/content/fr/mentions-legales.js
   <section class="page-hero">
     <div class="hero-bg"><picture>
   <source type="image/webp"
-    srcset="images/lg-P04-facade-hortensias-sm.webp 400w, images/lg-P04-facade-hortensias-md.webp 800w, images/lg-P04-facade-hortensias-lg.webp 1600w"
+    srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
     sizes="100vw">
-  <img src="images/lg-P04-facade-hortensias.jpg" alt="La Grimouillière" loading="lazy">
+  <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="La Grimouillière" loading="lazy">
 </picture></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">

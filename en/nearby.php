@@ -1,5 +1,7 @@
 <?php
 $data = json_decode(file_get_contents(__DIR__ . '/../content/en/nearby.json'), true) ?: [];
+$heroImg = $data['hero_image'] ?? 'images/lg-extra-vaches-normandie';
+$heroHeading = $data['hero_heading'] ?? 'Surroundings';
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -54,15 +56,15 @@ $data = json_decode(file_get_contents(__DIR__ . '/../content/en/nearby.json'), t
     <div class="hero-bg">
         <picture>
           <source type="image/webp"
-            srcset="../images/lg-extra-vaches-normandie-sm.webp 400w, ../images/lg-extra-vaches-normandie-md.webp 800w, ../images/lg-extra-vaches-normandie-lg.webp 1600w"
+            srcset="../<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, ../<?= htmlspecialchars($heroImg) ?>-md.webp 800w, ../<?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
             sizes="100vw">
-          <img src="../images/lg-extra-vaches-normandie.jpg" alt="Norman cows in a Pays d'Auge orchard" loading="lazy">
+          <img src="../<?= htmlspecialchars($heroImg) ?>.jpg" alt="Surroundings" loading="lazy">
         </picture>
       </div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <p class="section-label">NEARBY</p>
-      <h1>Surroundings</h1>
+      <h1><?= htmlspecialchars($heroHeading) ?></h1>
     </div>
   </section>
 
