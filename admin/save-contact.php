@@ -4,11 +4,13 @@ require_login();
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') { header('Location: dashboard.php'); exit; }
 
+require_csrf();
+
 $instagram = trim($_POST['instagram'] ?? '@lagrimflow');
 
 $fr = [
     'hero_heading' => 'Nous contacter',
-    'intro_text' => $_POST['fr_intro_text'] ?? '',
+    'intro_text' => sanitize_html($_POST['fr_intro_text'] ?? ''),
     'form_hint' => trim($_POST['fr_form_hint'] ?? ''),
     'address' => trim($_POST['fr_address'] ?? ''),
     'distance' => trim($_POST['fr_distance'] ?? ''),
@@ -21,7 +23,7 @@ $fr = [
 
 $en = [
     'hero_heading' => 'Get in touch',
-    'intro_text' => $_POST['en_intro_text'] ?? '',
+    'intro_text' => sanitize_html($_POST['en_intro_text'] ?? ''),
     'form_hint' => trim($_POST['en_form_hint'] ?? ''),
     'address' => trim($_POST['en_address'] ?? ''),
     'distance' => trim($_POST['en_distance'] ?? ''),

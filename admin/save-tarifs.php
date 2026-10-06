@@ -7,11 +7,13 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $hero_image = trim($_POST['hero_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
 
-$fr_data = ['hero_heading' => trim($_POST['fr_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'intro_text' => $_POST['fr_intro_text'] ?? '', 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
-$en_data = ['hero_heading' => trim($_POST['en_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'intro_text' => $_POST['en_intro_text'] ?? '', 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
+$fr_data = ['hero_heading' => trim($_POST['fr_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'intro_text' => sanitize_html($_POST['fr_intro_text'] ?? ''), 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
+$en_data = ['hero_heading' => trim($_POST['en_hero_heading'] ?? ''), 'hero_image' => $hero_image, 'intro_text' => sanitize_html($_POST['en_intro_text'] ?? ''), 'rates' => [], 'info' => [], 'cta_image' => $cta_image];
 
 if (!empty($_POST['fr_rates'])) {
     foreach ($_POST['fr_rates'] as $rate) {

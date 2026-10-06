@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $fr_data = [
     'hero_label' => trim($_POST['fr_hero_label'] ?? ''),
     'hero_heading' => trim($_POST['fr_hero_heading'] ?? ''),
@@ -24,7 +26,7 @@ if (!empty($_POST['fr_sections'])) {
         if (!empty($sec['heading']) || !empty($sec['text'])) {
             $fr_data['sections'][] = [
                 'heading' => trim($sec['heading'] ?? ''),
-                'text' => $sec['text'] ?? '',
+                'text' => sanitize_html($sec['text'] ?? ''),
             ];
         }
     }
@@ -35,7 +37,7 @@ if (!empty($_POST['en_sections'])) {
         if (!empty($sec['heading']) || !empty($sec['text'])) {
             $en_data['sections'][] = [
                 'heading' => trim($sec['heading'] ?? ''),
-                'text' => $sec['text'] ?? '',
+                'text' => sanitize_html($sec['text'] ?? ''),
             ];
         }
     }

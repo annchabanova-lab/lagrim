@@ -78,6 +78,7 @@ $max_ideas = max(count($fr_ideas), count($en_ideas));
   <h2 class="editor-title">Autour / Nearby</h2>
 
   <form method="POST" action="save-autour.php" id="autour-form">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- HERO -->
     <div class="section-card">

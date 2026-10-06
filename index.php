@@ -80,7 +80,7 @@ $introImg = $intro['image'] ?? 'images/lg-P03-facade-clematis';
                 <source type="image/webp"
                     srcset="<?= htmlspecialchars($heroImg) ?>-sm.webp 400w, <?= htmlspecialchars($heroImg) ?>-md.webp 800w, <?= htmlspecialchars($heroImg) ?>-lg.webp 1600w"
                     sizes="100vw">
-                <img src="<?= htmlspecialchars(preg_replace('/^(images\/[^\/]+)$/', '$1.jpg', $heroImg)) ?>.jpg" alt="La Grimouillière de nuit, maison à colombages illuminée" width="1600" height="900">
+                <img src="<?= htmlspecialchars($heroImg) ?>.jpg" alt="La Grimouillière de nuit, maison à colombages illuminée" width="1600" height="900">
             </picture>
         </div>
         <div class="hero-overlay"></div>

@@ -213,6 +213,7 @@ $max_info = max(count($fr_info), count($en_info));
   <h2 class="editor-title">Tarifs / Rates</h2>
 
   <form method="POST" action="save-tarifs.php" id="tarifs-form">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- HERO -->
     <div class="section-card">

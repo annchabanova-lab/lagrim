@@ -209,6 +209,7 @@ $max_why = max(count($fr_why), count($en_why), 1);
   <h2 class="editor-title">Accueil / Homepage</h2>
 
   <form method="POST" action="save-homepage.php" id="homepage-form">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- HERO -->
     <div class="section-card">

@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $hero_image = trim($_POST['hero_image'] ?? '');
 $intro_image = trim($_POST['intro_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
@@ -16,11 +18,11 @@ $fr_data = [
     'hero_heading' => trim($_POST['fr_hero_heading'] ?? ''),
     'hero_image' => $hero_image,
     'intro_heading' => trim($_POST['fr_intro_heading'] ?? ''),
-    'intro_text' => $_POST['fr_intro_text'] ?? '',
+    'intro_text' => sanitize_html($_POST['fr_intro_text'] ?? ''),
     'intro_image' => $intro_image,
     'summary' => [],
     'comfort_heading' => trim($_POST['fr_comfort_heading'] ?? ''),
-    'comfort_text' => $_POST['fr_comfort_text'] ?? '',
+    'comfort_text' => sanitize_html($_POST['fr_comfort_text'] ?? ''),
     'cta_image' => $cta_image,
 ];
 
@@ -29,11 +31,11 @@ $en_data = [
     'hero_heading' => trim($_POST['en_hero_heading'] ?? ''),
     'hero_image' => $hero_image,
     'intro_heading' => trim($_POST['en_intro_heading'] ?? ''),
-    'intro_text' => $_POST['en_intro_text'] ?? '',
+    'intro_text' => sanitize_html($_POST['en_intro_text'] ?? ''),
     'intro_image' => $intro_image,
     'summary' => [],
     'comfort_heading' => trim($_POST['en_comfort_heading'] ?? ''),
-    'comfort_text' => $_POST['en_comfort_text'] ?? '',
+    'comfort_text' => sanitize_html($_POST['en_comfort_text'] ?? ''),
     'cta_image' => $cta_image,
 ];
 

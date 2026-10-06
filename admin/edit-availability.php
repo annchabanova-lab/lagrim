@@ -168,6 +168,7 @@ $saved = isset($_GET['saved']);
   <p class="help-text">Ajoutez ou modifiez les périodes. Le statut « Complet » bloque la période, « Disponible » la montre ouverte, « Sur demande » invite à nous contacter.</p>
 
   <form method="POST" action="save-availability.php">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
     <div class="section-card">
       <div id="periods-container">
         <?php foreach ($periods as $i => $p): ?>

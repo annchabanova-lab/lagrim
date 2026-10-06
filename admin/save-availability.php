@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $data = ['periods' => []];
 
 if (!empty($_POST['periods'])) {

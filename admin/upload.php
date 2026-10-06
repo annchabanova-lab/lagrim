@@ -9,6 +9,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST' || empty($_FILES['image'])) {
     exit;
 }
 
+require_csrf(true);
+
 $file = $_FILES['image'];
 
 if ($file['error'] !== UPLOAD_ERR_OK) {
@@ -30,7 +32,7 @@ if (!in_array($mime, ['image/jpeg', 'image/png', 'image/webp', 'image/gif'])) {
 // Always generate a unique filename to avoid browser cache issues
 $fieldName = trim($_POST['field'] ?? 'photo');
 $fieldName = preg_replace('/[^a-z0-9-]/', '-', strtolower($fieldName));
-$baseName = 'lg-' . $fieldName . '-' . date('Ymd-His');
+$baseName = 'lg-' . $fieldName . '-' . date('Ymd-His') . '-' . bin2hex(random_bytes(2));
 
 $imagesDir = __DIR__ . '/../images/';
 
@@ -50,6 +52,12 @@ if (!$src) {
 $origW = imagesx($src);
 $origH = imagesy($src);
 
+if ($origW * $origH > 25000000) {
+    imagedestroy($src);
+    echo json_encode(['error' => 'Image too large (max 25 megapixels)']);
+    exit;
+}
+
 $sizes = ['sm' => 400, 'md' => 800, 'lg' => 1600];
 $paths = [];
 
@@ -65,7 +73,13 @@ foreach ($sizes as $label => $targetW) {
     }
 
     $filename = $baseName . '-' . $label . '.webp';
-    imagewebp($resized, $imagesDir . $filename, 82);
+    $ok = imagewebp($resized, $imagesDir . $filename, 82);
+    if (!$ok || !file_exists($imagesDir . $filename)) {
+        imagedestroy($src);
+        foreach ($paths as $p) @unlink(__DIR__ . '/../' . $p);
+        echo json_encode(['error' => 'Failed to create ' . $label . ' variant']);
+        exit;
+    }
     $paths[$label] = 'images/' . $filename;
 
     if ($resized !== $src) imagedestroy($resized);

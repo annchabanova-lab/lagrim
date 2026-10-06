@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $hero_image = trim($_POST['hero_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
 

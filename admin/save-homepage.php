@@ -7,6 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     exit;
 }
 
+require_csrf();
+
 $hero_image = trim($_POST['hero_image'] ?? '');
 $intro_image = trim($_POST['intro_image'] ?? '');
 $cta_image = trim($_POST['cta_image'] ?? '');
@@ -21,7 +23,7 @@ $fr_data = [
         'cta_text' => trim($_POST['fr_hero_cta'] ?? ''),
     ],
     'intro' => [
-        'text' => $_POST['fr_intro_text'] ?? '',
+        'text' => sanitize_html($_POST['fr_intro_text'] ?? ''),
         'image' => $intro_image,
         'cta_text' => trim($_POST['fr_intro_cta'] ?? ''),
     ],
@@ -44,7 +46,7 @@ $en_data = [
         'cta_text' => trim($_POST['en_hero_cta'] ?? ''),
     ],
     'intro' => [
-        'text' => $_POST['en_intro_text'] ?? '',
+        'text' => sanitize_html($_POST['en_intro_text'] ?? ''),
         'image' => $intro_image,
         'cta_text' => trim($_POST['en_intro_cta'] ?? ''),
     ],

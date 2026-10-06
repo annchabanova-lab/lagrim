@@ -73,6 +73,7 @@ $max_summary = max(count($fr_summary), count($en_summary));
   <h2 class="editor-title">La maison / The house</h2>
 
   <form method="POST" action="save-maison.php" id="maison-form">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- HERO -->
     <div class="section-card">

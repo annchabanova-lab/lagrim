@@ -4,12 +4,25 @@ require_once 'config.php';
 $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (password_verify($_POST['password'] ?? '', ADMIN_PASSWORD_HASH)) {
-        $_SESSION['admin_logged_in'] = true;
-        header('Location: dashboard.php');
-        exit;
+    if (!check_login_throttle()) {
+        $error = 'Trop de tentatives. Veuillez patienter 15 minutes.';
+    } else {
+        $password = $_POST['password'] ?? null;
+        if (is_string($password) && ADMIN_PASSWORD_HASH !== '' && password_verify($password, ADMIN_PASSWORD_HASH)) {
+            if (!session_regenerate_id(true)) {
+                http_response_code(500);
+                exit('Login unavailable');
+            }
+            $_SESSION = [
+                'admin_logged_in' => true,
+                'csrf_token' => bin2hex(random_bytes(32)),
+            ];
+            header('Location: dashboard.php', true, 303);
+            exit;
+        }
+        record_login_attempt();
+        $error = 'Mot de passe incorrect';
     }
-    $error = 'Mot de passe incorrect';
 }
 
 if (is_logged_in()) {
@@ -60,7 +73,7 @@ if (is_logged_in()) {
     font-size: 0.85rem;
     margin-bottom: 2rem;
   }
-  .login-card input {
+  .login-card input[type="password"] {
     width: 100%;
     padding: 12px 16px;
     border: 1px solid #ddd;
@@ -70,7 +83,7 @@ if (is_logged_in()) {
     margin-bottom: 1rem;
     text-align: center;
   }
-  .login-card input:focus {
+  .login-card input[type="password"]:focus {
     outline: none;
     border-color: var(--sauge);
   }
@@ -103,6 +116,7 @@ if (is_logged_in()) {
     <p class="error"><?= htmlspecialchars($error) ?></p>
   <?php endif; ?>
   <form method="POST">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
     <input type="password" name="password" placeholder="Mot de passe" required autofocus>
     <button type="submit">CONNEXION</button>
   </form>

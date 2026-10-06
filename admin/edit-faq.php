@@ -194,6 +194,7 @@ $max_items = max(count($fr_items), count($en_items));
   <h2 class="editor-title">FAQ / Frequently Asked Questions</h2>
 
   <form method="POST" action="save-faq.php">
+    <input type="hidden" name="csrf_token" value="<?= htmlspecialchars(csrf_token(), ENT_QUOTES, 'UTF-8') ?>">
 
     <!-- HERO -->
     <div class="section-card">
